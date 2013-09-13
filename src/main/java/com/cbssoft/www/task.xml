@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Contact Mapper with Nested Results for Collection -->
+<mapper namespace="com.cbssoft.www.TaskMapper">
+
+    <resultMap id="taskResultMap" type="com.cbssoft.www.Task">
+        <id property="id" column="ID_" />
+        <result property="name" column="NAME_" />
+    </resultMap>
+
+    <select id="getTasks" resultMap="taskResultMap">
+        SELECT
+        ID_,
+        NAME_
+        FROM ACT_RU_TASK
+    </select>     
+    
+</mapper>
