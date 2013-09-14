@@ -12,24 +12,46 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
- 
+
+import com.cbssoft.www.dao.NoteDao;
+import com.cbssoft.www.domain.Note;
+
 @Controller
 @RequestMapping("/")
 public class BaseController {
 	
 	@Autowired
-	Dao dao;
+	private Dao dao;
+	
+	@Autowired
+	private NoteDao noteDao;
  
 	@RequestMapping(value="/welcome", method = RequestMethod.GET)
 	@ResponseBody
 	public String welcome(ModelMap model) throws JsonGenerationException, JsonMappingException, IOException {
-		model.addAttribute("message", "Maven Web Project + Spring 3 MVC - welcome()");
 		ObjectMapper mapper = new ObjectMapper();
-	    System.out.println(mapper.writeValueAsString(dao.getTasks()));
-		//Spring uses InternalResourceViewResolver and return back index.jsp
-		return mapper.writeValueAsString(dao.getTasks());
- 
+//	    System.out.println(mapper.writeValueAsString(dao.getTasks()));
+		return mapper.writeValueAsString(noteDao.selectNotes());
 	}
+	
+	@RequestMapping(value="/note", method = RequestMethod.GET)
+	@ResponseBody
+	public String insertNote() {
+		Note note = new Note();
+		note.setContent("new content");
+		note.setSubject("new subject");
+		note.setType("new type");
+		noteDao.insertNote(note);
+		return "fn";
+	}
+	
+	@RequestMapping(value="/save-note", method = RequestMethod.POST)
+	public void saveNote(Note note) {
+		System.out.println("++++++++++++++++saving.......");
+		noteDao.insertNote(note);
+	}
+	
+	
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap model) {

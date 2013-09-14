@@ -26,84 +26,7 @@
 <title>Test App</title>
 </head>
 <body>
-<div class="header navbar navbar-inverse navbar-fixed-top">
-  <!-- BEGIN TOP NAVIGATION BAR -->
-  <div class="navbar-inner">
-    <div class="container-fluid">
-    <ul class="nav pull-right">
-   <!-- BEGIN NOTIFICATION DROPDOWN -->   
-   <li class="dropdown" id="header_notification_bar">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-      <i class="icon-warning-sign"></i>
-      <span class="badge">6</span>
-      </a>
-      <ul class="dropdown-menu extended notification">
-         <li>
-            <p>You have 14 new notifications</p>
-         </li>
-         <li>
-            <a href="#">
-            <span class="label label-success"><i class="icon-plus"></i></span>
-            New user registered. 
-            <span class="time">Just now</span>
-            </a>
-         </li>
-         <li>
-            <a href="#">
-            <span class="label label-important"><i class="icon-bolt"></i></span>
-            Server #12 overloaded. 
-            <span class="time">15 mins</span>
-            </a>
-         </li>
-         <li>
-            <a href="#">
-            <span class="label label-warning"><i class="icon-bell"></i></span>
-            Server #2 not respoding.
-            <span class="time">22 mins</span>
-            </a>
-         </li>
-         <li>
-            <a href="#">
-            <span class="label label-info"><i class="icon-bullhorn"></i></span>
-            Application error.
-            <span class="time">40 mins</span>
-            </a>
-         </li>
-         <li>
-            <a href="#">
-            <span class="label label-important"><i class="icon-bolt"></i></span>
-            Database overloaded 68%. 
-            <span class="time">2 hrs</span>
-            </a>
-         </li>
-         <li>
-            <a href="#">
-            <span class="label label-important"><i class="icon-bolt"></i></span>
-            2 user IP blocked.
-            <span class="time">5 hrs</span>
-            </a>
-         </li>
-         <li class="external">
-            <a href="#">See all notifications <i class="m-icon-swapright"></i></a>
-         </li>
-      </ul>
-   </li>
-   </ul>
-    </div>
-  </div>
-  <!-- END TOP NAVIGATION BAR -->
-</div>
 
-<!-- BEGIN SIDEBAR -->
-<div class="page-sidebar nav-collapse collapse">
-  <!-- MAIN MENU GOES HERE.-->
-</div>
-<!-- END SIDEBAR -->
-
-<!-- BEGIN PAGE -->
-<div class="page-content">
-  <!-- BEGIN PAGE CONTAINER-->
-  <div class="container-fluid">
     <!-- BEGIN PAGE HEADER-->
     <div class="row-fluid">
       <div class="span12">
@@ -126,24 +49,104 @@
     <!-- END PAGE HEADER-->
     <!-- CONTENT BODY GOES HERE >>>> -->
     <div>
-    <table ng-controller="taskControl">
-   <tr><th>id</th><th>name1</th></tr>
-   <tbody>
-      <tr data-ng-repeat="task in tasks">
-        <td>{{ task.id }}</td>
-        <td>{{ task.name }}</td>
-      </tr>
-    </tbody>
-</table>
+                     <div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption"><i class="icon-reorder"></i>Note Input</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse"></a>
+									<a href="#portlet-config" data-toggle="modal" class="config"></a>
+									<a href="javascript:;" class="reload"></a>
+									<a href="javascript:;" class="remove"></a>
+								</div>
+							</div>
+							<div class="portlet-body form">
+								<!-- BEGIN FORM-->
+								<form action="save-note" method="post" class="form-horizontal">
+									<div class="control-group">
+										<label class="control-label">Subject</label>
+										<div class="controls">
+											<input name="subject" type="text" class="span6 m-wrap">
+											<span class="help-inline">subject hint</span>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Content</label>
+										<div class="controls">
+											<textarea name="content" class="span6 m-wrap" rows="3"></textarea>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Type</label>
+										<div class="controls">
+											<select name="type" class="span6 m-wrap" multiple="multiple" data-placeholder="Choose a Category" tabindex="1">
+												<option value="Category 1">Category 1</option>
+												<option value="Category 2">Category 2</option>
+												<option value="Category 3">Category 5</option>
+												<option value="Category 4">Category 4</option>
+												<option value="Category 3">Category 6</option>
+												<option value="Category 4">Category 7</option>
+												<option value="Category 3">Category 8</option>
+												<option value="Category 4">Category 9</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-actions">
+										<button type="submit" class="btn blue">Submit</button>
+										<button type="reset" class="btn">Reset</button>     
+									</div>
+								</form>
+								<!-- END FORM-->  
+							</div>
+						</div>    
+
+
+                     <div class="portlet box purple" ng-controller="taskControl">
+							<div class="portlet-title">
+								<div class="caption"><i class="icon-comments"></i>Notes List</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse"></a>
+									<a href="#portlet-config" data-toggle="modal" class="config"></a>
+									<a href="javascript:;" class="reload"></a>
+									<a href="javascript:;" class="remove"></a>
+								</div>
+							</div>
+							<div class="portlet-body">
+							<select ng-model="orderProp">
+								<option value="id" selected="selected">id(smallest)</option>
+								<option value="-id" selected="selected">id(biggest)</option>
+								<option value="subject">subject</option>
+								<option value="date">date</option>
+							</select>
+								<table  class="table table-striped table-hover">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>First Name</th>
+											<th>Last Name</th>
+											<th class="hidden-480">Username</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+								      <tr data-ng-repeat="task in tasks | orderBy:orderProp">
+								        <td>{{ task.id }}</td>
+								        <td>{{ task.subject }}</td>
+								        <td>{{ task.content }}</td>
+								        <td>{{ task.type }}</td>
+								        <td>{{ task.date }}</td>
+								      </tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
     </div>
-  </div>   
-  <!-- END PAGE CONTAINER-->
-</div>      
-<!-- END PAGE -->
+
 
 
 <script>
    function taskControl($scope, $http) {
+	  $scope.orderProp = 'id';
 	  $http.get('http://localhost:8080/maven-webapp/welcome').success(function(data) {
 	    $scope.tasks = data;
 	  });
