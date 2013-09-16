@@ -26,11 +26,10 @@ public class BaseController {
 	@Autowired
 	private NoteDao noteDao;
  
-	@RequestMapping(value="/welcome", method = RequestMethod.GET)
+	@RequestMapping(value="/load-notes", method = RequestMethod.GET)
 	@ResponseBody
 	public String welcome(ModelMap model) throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
-//	    System.out.println(mapper.writeValueAsString(dao.getTasks()));
 		return mapper.writeValueAsString(noteDao.selectNotes());
 	}
 	

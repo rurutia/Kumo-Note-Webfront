@@ -13,6 +13,7 @@
 	<context:component-scan base-package="com.cbssoft.www" />
 	<mvc:annotation-driven />  
 	<mvc:resources  mapping="/assets/**" location="/assets/" /> 
+	<mvc:resources  mapping="/resource/**" location="/resource/" /> 
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> 
