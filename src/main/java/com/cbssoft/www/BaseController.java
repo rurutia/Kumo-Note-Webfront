@@ -45,9 +45,11 @@ public class BaseController {
 	}
 	
 	@RequestMapping(value="/save-note", method = RequestMethod.POST)
-	public void saveNote(Note note) {
+	@ResponseBody
+	public String saveNote(Note note) {
 		System.out.println("++++++++++++++++saving.......");
 		noteDao.insertNote(note);
+		return "ok"; 
 	}
 	
 	

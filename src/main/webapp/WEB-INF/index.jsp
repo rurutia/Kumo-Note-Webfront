@@ -15,28 +15,29 @@
 		  <div class="form-group">
 		    <label for="inputEmail1" class="col-lg-2 control-label">Subject</label>
 		    <div class="col-lg-10">
-		      <input name="subject" type="text" class="form-control" placeholder="subject">
+		      <input name="subject" ng-model="note.subject" type="text" class="form-control" placeholder="subject">
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="inputPassword1" class="col-lg-2 control-label">Content</label>
 		    <div class="col-lg-10">
-		      <textarea name="content" class="form-control" placeholder="content" rows="3"></textarea>
+		      <textarea name="content" ng-model="note.content" class="form-control" placeholder="content" rows="3"></textarea>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="inputPassword1" class="col-lg-2 control-label">Type</label>
 		   <div class="col-lg-10">
-				<select name="type" multiple class="form-control" tabindex="1">
-					<option value="Category 1" ng-repeat="category in categories">
-				    	{{category}}
+				<select name="type" ng-model="note.category" multiple class="form-control" tabindex="1">
+					<option value="{{category.value}}" ng-repeat="category in categories">
+				    	{{category.text}}
 				 	</option>
-				</select>			
+				</select>		
 			</div>
 		  </div>
 			<div class="form-actions">
 				<button type="submit" class="btn btn-primary">Submit</button>
-				<button type="reset" class="btn">Reset</button>     
+				<button type="reset" class="btn">Reset</button> 
+				<button type="button" class="btn btn-danger" ng-click="postFormData()">Ajax</button>     
 			</div>
 		</form>
 	  </div>
