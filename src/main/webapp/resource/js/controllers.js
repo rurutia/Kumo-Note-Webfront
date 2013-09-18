@@ -96,7 +96,10 @@ myAppModule
 	};
 	  
 	$scope.updateNote = function() {
-	  var postData = $.param({id: $scope.note.noteId, subject: $scope.note.subject, content: $scope.note.content, type: $scope.note.type.join()});
+	  var noteType = $scope.note.type;
+      if(typeof $scope.note.type === 'object')
+		  noteType = noteType.join();
+	  var postData = $.param({id: $scope.note.noteId, subject: $scope.note.subject, content: $scope.note.content, type: noteType});
 	  
 	  $http.post(
 			  "update-note/", 

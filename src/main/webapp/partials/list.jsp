@@ -6,21 +6,21 @@
 	  <div class="panel-body">
 		<form action="save-note" method="post" class="form-horizontal">
 		  <div class="form-group">
-		    <label for="inputEmail1" class="col-lg-2 control-label">Subject</label>
-		    <div class="col-lg-10">
+		    <label for="inputEmail1" class="col-md-2 control-label">Subject</label>
+		    <div class="col-md-10">
 		      <input name="subject" ng-model="note.subject" type="text" class="form-control" placeholder="subject">
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="inputPassword1" class="col-lg-2 control-label">Content</label>
-		    <div class="col-lg-10">
+		    <label for="inputPassword1" class="col-md-2 control-label">Content</label>
+		    <div class="col-md-10">
 		      <textarea name="content" ng-model="note.content" class="form-control" placeholder="content" rows="3"></textarea>
 		      <span>chars entered: {{note.content.length}}</span>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label class="col-lg-2 control-label">Type</label>
-		   <div class="col-lg-10">
+		    <label class="col-md-2 control-label">Type</label>
+		   <div class="col-md-10">
 				<select name="type" ng-model="note.category" ng-options="c.value as c.label group by c.group for c in categories"
 				 multiple class="form-control" tabindex="1" size="8">
 					<option value=""></option>
