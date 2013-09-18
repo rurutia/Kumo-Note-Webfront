@@ -25,4 +25,8 @@ public class NoteDao {
 		  sqlSession.delete("com.cbssoft.www.NoteMapper.deleteNote", id);
 	  }
 	  
+	  public void updateNote(Note note) {
+		  sqlSession.update("com.cbssoft.www.NoteMapper.updateNote", note);
+	  }
+	  
 }

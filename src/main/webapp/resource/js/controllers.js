@@ -25,12 +25,6 @@ myAppModule.
 				     {
 			  			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				     })
-//	      $http({
-//	            url: 'save-note',
-//	            method: "post",
-//	            data: postData,
-//	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-//	        })
 	        .success(function (data, status, headers, config) {
 	        	console.log(data);
 	        	angular.element($('#noteList')).scope().loadNotes();
@@ -79,7 +73,9 @@ myAppModule.
 
 // detail view controllers
 myAppModule
-.controller('noteDetailControl', function($scope, $routeParams, $http, $location){
+.controller('noteDetailControl', function($scope, $routeParams, $http, $location, addNoteModel){
+	$scope.categories = addNoteModel.getCategories();
+	
 	angular.element($('#linkHome')).scope().isActive = false;
 	$scope.note = {};
 	$scope.note.noteId = $routeParams.noteId;
@@ -88,16 +84,33 @@ myAppModule
 	$scope.note.type = $routeParams.type;
 	
 	$scope.deleteNote = function() {
-		  var postData = $.param({id: $scope.note.noteId});
-		  
-		  $http.delete("delete-note/" + $scope.note.noteId)
-		  .success(function (data, status, headers, config) {
-		      	console.log("id:" + $scope.note.noteId + " " + data);
-		      	$location.path('#/list');
-	      }).error(function (data, status, headers, config) {
-	      	console.log('post call to delete note failed');
-	      });
-	  }; 
+	  var postData = $.param({id: $scope.note.noteId});
+	  
+	  $http.delete("delete-note/" + $scope.note.noteId)
+	  .success(function (data, status, headers, config) {
+	      	console.log("id:" + $scope.note.noteId + " " + data);
+	      	$location.path('#/list');
+      }).error(function (data, status, headers, config) {
+      	console.log('post call to delete note failed');
+      });
+	};
+	  
+	$scope.updateNote = function() {
+	  var postData = $.param({id: $scope.note.noteId, subject: $scope.note.subject, content: $scope.note.content, type: $scope.note.type.join()});
+	  
+	  $http.post(
+			  "update-note/", 
+			  postData,
+			  {
+		  		headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			  })
+	  .success(function (data, status, headers, config) {
+	      	console.log("id:" + $scope.note.noteId + " " + data);
+	      	$location.path('#/list');
+      }).error(function (data, status, headers, config) {
+      	console.log('post call to delete note failed');
+      });
+	};
 	  
     $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
 	  angular.element($('#linkHome')).scope().isDetailActive = false;

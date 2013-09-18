@@ -20,10 +20,19 @@
 		  </div>
 		  <div class="form-group">
 		    <label class="col-lg-2 control-label">Type</label>
-			<pre class="col-lg-3">{{note.type}}</pre>
+			<pre class="col-lg-6" ng-click="isCategorySelectionShow=true">{{note.type}}</pre>
+		  </div>
+		  
+		  <div class="form-group" ng-show="isCategorySelectionShow">
+		   <div class="col-lg-10 col-md-offset-2">
+				<select name="type" ng-model="note.type" ng-options="c.value as c.label group by c.group for c in categories"
+				 multiple class="form-control" tabindex="1" size="8" ng-click="window.alert('dd')">
+					<option value=""></option>
+				</select>		
+			</div>
 		  </div>
 			<div class="form-actions">
-				<button type="submit" class="btn btn-primary btn-small">Submit</button>
+				<button type="submit" class="btn btn-primary btn-small" ng-click="updateNote()">Update</button>
 				<button type="reset" class="btn btn-small">Reset</button> 
 				<button class="btn btn-danger btn-small" ng-click="deleteNote()">delete</button>
 			</div>

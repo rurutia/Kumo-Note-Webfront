@@ -10,8 +10,14 @@
     </insert>   
     
     <delete id="deleteNote" parameterType="int">
-      delete from NOTE where id = #{id}
+		delete from NOTE where id = #{id}
     </delete>
+    
+    <update id="updateNote" parameterType="com.cbssoft.www.domain.Note">
+    	update NOTE 
+    	set subject = #{subject}, content = #{content}, type = #{type}
+    	where id = #{id}
+    </update>
     
     <resultMap id="noteMap" type="com.cbssoft.www.domain.Note" >
     	<result property="id" column="id" />
