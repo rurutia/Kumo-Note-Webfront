@@ -47,9 +47,17 @@ public class BaseController {
 	@RequestMapping(value="/save-note", method = RequestMethod.POST)
 	@ResponseBody
 	public String saveNote(Note note) {
-		System.out.println("++++++++++++++++saving.......");
+		System.out.println("saving note.......");
 		noteDao.insertNote(note);
-		return "ok"; 
+		return "insert ok"; 
+	}
+	
+	@RequestMapping(value="/delete-note/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public String deleteNote(@PathVariable int id) {
+		System.out.println("deleting note.......");
+		noteDao.deleteNote(id);
+		return "delete ok"; 
 	}
 	
 	

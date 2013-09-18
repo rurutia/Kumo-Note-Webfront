@@ -4,7 +4,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers']).
   config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/view1', {templateUrl: 'partials/partial1.jsp', controller: 'MyCtrl1'});
-    $routeProvider.when('/view2', {templateUrl: 'partials/partial2.jsp', controller: 'MyCtrl2'});
-    $routeProvider.otherwise({redirectTo: '/view1'});
+    $routeProvider.when('/list', {templateUrl: 'partials/list.jsp', controller: 'noteMainControl'});
+    $routeProvider.when('/detail/:noteId/:subject/:content/:type', {templateUrl: 'partials/detail.jsp', controller: 'noteDetailControl'});
+    $routeProvider.otherwise({redirectTo: '/list'});
   }]);

@@ -20,4 +20,9 @@ public class NoteDao {
 	  public void insertNote(Note note) {
 		  sqlSession.insert("com.cbssoft.www.NoteMapper.insertNote", note);
 	  }
+	  
+	  public void deleteNote(int id) {
+		  sqlSession.delete("com.cbssoft.www.NoteMapper.deleteNote", id);
+	  }
+	  
 }

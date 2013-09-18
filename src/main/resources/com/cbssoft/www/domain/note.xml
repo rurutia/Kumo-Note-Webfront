@@ -9,6 +9,10 @@
     	values (#{subject}, #{content}, #{type}, now())
     </insert>   
     
+    <delete id="deleteNote" parameterType="int">
+      delete from NOTE where id = #{id}
+    </delete>
+    
     <resultMap id="noteMap" type="com.cbssoft.www.domain.Note" >
     	<result property="id" column="id" />
     	<result property="subject" column="subject" />
