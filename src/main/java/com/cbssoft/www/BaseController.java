@@ -26,7 +26,7 @@ public class BaseController {
 	@Autowired
 	private NoteDao noteDao;
  
-	@RequestMapping(value="/load-notes", method = RequestMethod.GET)
+	@RequestMapping(value="/notes/load", method = RequestMethod.GET)
 	@ResponseBody
 	public String welcome(ModelMap model) throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
@@ -60,7 +60,7 @@ public class BaseController {
 		return "update ok"; 
 	}
 	
-	@RequestMapping(value="/delete-note/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value="/notes/delete/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String deleteNote(@PathVariable int id) {
 		System.out.println("deleting note.......");

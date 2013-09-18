@@ -29,6 +29,7 @@ tr.selected {
 </div>
 
   <script src="resource/lib/angular/angular.js"></script>
+  <script src="resource/lib/angular/angular-resource.js"></script>
   <script src="resource/js/app.js"></script>
   <script src="resource/js/services.js"></script>
   <script src="resource/js/controllers.js"></script>
