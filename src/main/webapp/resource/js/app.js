@@ -9,9 +9,10 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 
     $routeProvider.otherwise({redirectTo: '/list'});
   }])
   .factory('Notes', function($resource){
-	  return $resource('notes/:action/:id', {action:'load', id:'@id'});
+	  return $resource(
+			  'notes/:action/:id',
+			  {action:'load', id:'@id'},
+			  {update:{method:'PUT'}}
+	  );
   })
-//  .factory('SaveNotes', function($resource){
-//	  return $resource('save-note');
-//  })
   ;

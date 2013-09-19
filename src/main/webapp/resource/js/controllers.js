@@ -20,19 +20,11 @@ myAppModule.
 	  
 	  $scope.postFormData = function() {
 		  var postData = $.param({subject: $scope.note.subject, content:$scope.note.content, type:$scope.note.category.join()});
-		  //		  SaveNotes.save({subject: $scope.note.subject, content:$scope.note.content, type:$scope.note.category.join()});
-//		  SaveNotes.save('subject=sadf&content=asdf&type=Dart');
-		  $http.post('save-note',
-				     postData,
-				     {
-			  			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-				     })
-	        .success(function (data, status, headers, config) {
-	        	console.log(data);
-	        	angular.element($('#noteList')).scope().notes = Notes.query();
-            }).error(function (data, status, headers, config) {
-            	console.log('post call to save note failed');
-            });
+		  Notes.save(
+				  	{action:'save'},
+				    {subject: $scope.note.subject, content:$scope.note.content, type:$scope.note.category.join()},
+				    function() { angular.element($('#noteList')).scope().notes = Notes.query();}
+				  	);
 	  };
 
   })
@@ -40,14 +32,7 @@ myAppModule.
 	  $scope.orderProp = 'id';
 	  
 	  $scope.notes = Notes.query();
-	  
-//	  $scope.loadNotes = function() {
-//		  $http.get('load-notes').success(function(data) {
-//			    $scope.notes = data;
-//			  });
-//	  };
-//	  $scope.loadNotes();
-	  
+
 	  $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
 		angular.element($('#linkHome')).scope().isDetailActive = true;
 	  });
@@ -55,7 +40,10 @@ myAppModule.
   .controller('noteItemController', function($scope, $http, Notes) {
 	  $scope.deleteNote = function(id) {
 		  var postData = $.param({id: id});
-		  Notes.delete({action:'delete', id: id}, $scope.removeDeletedNote(id));
+		  Notes.delete(
+				  {action:'delete', id: id}, 
+				  $scope.removeDeletedNote(id)
+		        );
 	  }; 
 	  // delete success callback
 	  $scope.removeDeletedNote = function(id) {
@@ -84,19 +72,11 @@ myAppModule
 	$scope.note.type = $routeParams.type;
 	
 	$scope.deleteNote = function() {
-	  Notes.delete({action:'delete', id: $scope.note.noteId}, 
-				  function(data, status, headers, config) {
-			      	console.log("id:" + $scope.note.noteId + " " + data);
-			      	$location.path('#/list');
-		  		  });
-	  
-//	  $http.delete("delete-note/" + $scope.note.noteId)
-//	  .success(function (data, status, headers, config) {
-//	      	console.log("id:" + $scope.note.noteId + " " + data);
-//	      	$location.path('#/list');
-//      }).error(function (data, status, headers, config) {
-//      	console.log('post call to delete note failed');
-//      });
+	  Notes.delete(
+			      {action:'delete', id: $scope.note.noteId}, 
+				  function() {
+			      	$location.path('#/list');}
+			    );
 	};
 	  
 	$scope.updateNote = function() {
@@ -104,19 +84,10 @@ myAppModule
       if(typeof $scope.note.type === 'object')
 		  noteType = noteType.join();
 	  var postData = $.param({id: $scope.note.noteId, subject: $scope.note.subject, content: $scope.note.content, type: noteType});
-	  
-	  $http.post(
-			  "update-note/", 
-			  postData,
-			  {
-		  		headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			  })
-	  .success(function (data, status, headers, config) {
-	      	console.log("id:" + $scope.note.noteId + " " + data);
-	      	$location.path('#/list');
-      }).error(function (data, status, headers, config) {
-      	console.log('post call to delete note failed');
-      });
+	  Notes.update(
+			  {action:'update'},
+			  {id: $scope.note.noteId, subject: $scope.note.subject, content: $scope.note.content, type: noteType}
+	  );
 	};
 	  
     $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {

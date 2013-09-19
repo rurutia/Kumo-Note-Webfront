@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,17 +45,17 @@ public class BaseController {
 		return "fn";
 	}
 	
-	@RequestMapping(value="/save-note", method = RequestMethod.POST)
+	@RequestMapping(value="/notes/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String saveNote(Note note) {
+	public String saveNote(@RequestBody Note note) { // Converters in Spring register for certain content-type (for the request body) and accept (for the response). For json it's application/json and some others. For XML it's application/xml and some others. Make sure your client sends content-type: application/json and accept: application/json
 		System.out.println("saving note.......");
 		noteDao.insertNote(note);
 		return "insert ok"; 
 	}
 	
-	@RequestMapping(value="/update-note", method = RequestMethod.POST)
+	@RequestMapping(value="/notes/update/{id}", method = RequestMethod.PUT)
 	@ResponseBody
-	public String updateNote(Note note) {
+	public String updateNote(@RequestBody Note note) {
 		System.out.println("updating note.......");
 		noteDao.updateNote(note);
 		return "update ok"; 
