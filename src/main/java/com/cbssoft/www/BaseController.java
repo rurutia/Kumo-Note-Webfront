@@ -1,6 +1,8 @@
 package com.cbssoft.www;
  
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -45,12 +47,18 @@ public class BaseController {
 		return "fn";
 	}
 	
+	// Converters in Spring register for certain content-type (for the request body) and accept (for the response). 
+	// For json it's application/json and some others. For XML it's application/xml and some others. 
+	// Make sure your client sends content-type: application/json and accept: application/json	
 	@RequestMapping(value="/notes/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String saveNote(@RequestBody Note note) { // Converters in Spring register for certain content-type (for the request body) and accept (for the response). For json it's application/json and some others. For XML it's application/xml and some others. Make sure your client sends content-type: application/json and accept: application/json
+	public String saveNote(@RequestBody Note note) throws JsonGenerationException, JsonMappingException, IOException { 
 		System.out.println("saving note.......");
 		noteDao.insertNote(note);
-		return "insert ok"; 
+		Map<String, String> result = new HashMap<String,String>();
+		result.put("success", "true");
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(result);
 	}
 	
 	@RequestMapping(value="/notes/update/{id}", method = RequestMethod.PUT)

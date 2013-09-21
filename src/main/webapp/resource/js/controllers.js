@@ -23,7 +23,7 @@ myAppModule.
 		  Notes.save(
 				  	{action:'save'},
 				    {subject: $scope.note.subject, content:$scope.note.content, type:$scope.note.category.join()},
-				    function() { angular.element($('#noteList')).scope().notes = Notes.query();}
+				    function(result) {angular.element($('#noteList')).scope().notes = Notes.query();}
 				  	);
 	  };
 
