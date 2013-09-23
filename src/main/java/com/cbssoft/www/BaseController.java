@@ -22,10 +22,7 @@ import com.cbssoft.www.domain.Note;
 @Controller
 @RequestMapping("/")
 public class BaseController {
-	
-	@Autowired
-	private Dao dao;
-	
+
 	@Autowired
 	private NoteDao noteDao;
  

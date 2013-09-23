@@ -42,8 +42,6 @@
      <constructor-arg index="0" ref="sqlSessionFactory" />
     </bean>
     
-    <bean id="dao" class="com.cbssoft.www.Dao" />
-    
     <bean id="noteDao" class="com.cbssoft.www.dao.NoteDao" />
  
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
