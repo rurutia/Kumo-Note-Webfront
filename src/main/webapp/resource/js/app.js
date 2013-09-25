@@ -15,4 +15,19 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 
 			  {update:{method:'PUT'}}
 	  );
   })
+  .factory('PromiseTest', function($q, $timeout) {
+	  var getMessages = function(test) {
+		this.test = test;
+		var future = $q.defer();
+		 $timeout(function() {
+			future.resolve("a hello world message");
+		 }, 1000);
+		return future.promise;
+	  };
+	  
+	  return {
+		  getMessages : getMessages
+	  };
+	  
+  })
   ;

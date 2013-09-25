@@ -11,9 +11,13 @@ myAppModule.
   ;
 
 myAppModule.  
-  controller('noteMainControl', function($scope, MyApplication) {
+  controller('noteMainControl', function($scope, MyApplication, PromiseTest) {
 	  var myApplication = new MyApplication("1.07", "1.10.2", "3.1.0", "1.2.0");
-	  $scope.myApplication = myApplication.describe();
+//	  $scope.myApplication = myApplication.describe();
+	  $scope.myApplication = new PromiseTest.getMessages('ddd').test;
+	  PromiseTest.getMessages().then(function(messages) {
+		  $scope.myApplication  = messages;
+	  });
   })
   .controller('addNoteControl', function($scope, $http, addNoteModel, MyApplication, Notes) {
 	  $scope.categories = addNoteModel.getCategories();
