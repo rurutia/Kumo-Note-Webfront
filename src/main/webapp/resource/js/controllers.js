@@ -11,10 +11,18 @@ myAppModule.
   ;
 
 myAppModule.  
+	controller('currentTimeControl', function($scope, $interval) {
+		$interval(function() {
+			$scope.appCurrentTime = new Date().toLocaleString();  
+			console.log($scope.appCurrentTime);
+		}, 1000);
+	}).
   controller('noteMainControl', function($scope, MyApplication, PromiseTest) {
 	  var myApplication = new MyApplication("1.07", "1.10.2", "3.1.0", "1.2.0");
 //	  $scope.myApplication = myApplication.describe();
+	  
 	  $scope.myApplication = new PromiseTest.getMessages('ddd').test;
+
 	  PromiseTest.getMessages().then(function(messages) {
 		  $scope.myApplication  = messages;
 	  });

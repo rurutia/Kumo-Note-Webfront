@@ -41,7 +41,11 @@ angular.module('myApp.services', []).
 	
 	return MyApplication;
   })
-  .run(function($rootScope){
-	  $rootScope.appStartedTime = new Date().toLocaleString();
+  .run(function($rootScope, $timeout){
+	  $timeout(function() {
+		  $rootScope.appStartedTime = new Date().toLocaleString();  
+		  console.log($rootScope.appStartedTime);
+	  }, 1000);
+	  
   })
   ;
