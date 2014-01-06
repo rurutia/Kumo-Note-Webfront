@@ -1,9 +1,12 @@
+	<div ng-controller="appInfo">
+		<h5>{{myApplication.describe()}} {{rule}}</h5>
+	</div>
+
+	<h5>app started time: {{appStartedTime}}</h5>
+		
 	<div ng-controller="currentTimeControl">
 		Current time: {{appCurrentTime}}
 	</div>
-	
-	<h5>app started time: {{appStartedTime}}</h5>
-	<h5>111{{myApplication}} {{rule}}</h5>
 	
 	<div class="panel panel-primary" ng-controller="addNoteControl">
 	  <div class="panel-heading">Add new note</div>

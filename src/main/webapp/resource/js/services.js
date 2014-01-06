@@ -5,7 +5,7 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('myApp.services', []).
+angular.module('easyNote.services', []).
   value('version', '0.1')
   .factory('addNoteModel', function() {
 	  var categories = [
@@ -22,7 +22,7 @@ angular.module('myApp.services', []).
 			 } 
 	  };
   })
-  .factory(('MyApplication'), function() {
+  .factory('MyApplication', function() {
 	function MyApplication(angularVersion, jqueryVersion, springVersion, MyBatisVersion) {
 		this.angularVersion = angularVersion;
 		this.jqueryVersion = jqueryVersion;
@@ -40,12 +40,5 @@ angular.module('myApp.services', []).
 	};
 	
 	return MyApplication;
-  })
-  .run(function($rootScope, $timeout){
-	  $timeout(function() {
-		  $rootScope.appStartedTime = new Date().toLocaleString();  
-		  console.log($rootScope.appStartedTime);
-	  }, 1000);
-	  
   })
   ;

@@ -2,9 +2,9 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp', ['ngRoute','myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers','ngResource']).
+angular.module('easyNote', ['ngRoute','easyNote.filters', 'easyNote.services', 'easyNote.directives', 'easyNote.controllers','ngResource']).
   config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/list', {templateUrl: 'partials/list.jsp', controller: 'noteMainControl'});
+    $routeProvider.when('/list', {templateUrl: 'partials/list.jsp'});
     $routeProvider.when('/detail/:noteId/:subject/:content/:type', {templateUrl: 'partials/detail.jsp', controller: 'noteDetailControl'});
     $routeProvider.otherwise({redirectTo: '/list'});
   }])
@@ -15,20 +15,26 @@ angular.module('myApp', ['ngRoute','myApp.filters', 'myApp.services', 'myApp.dir
 			  {update:{method:'PUT'}}
 	  );
   })
-  .factory('PromiseTest', function($q, $timeout) {
-	  var getMessages = function(test) {
-//		this.test = test;
-//		return this.test;
+  .factory('promiseTest', function($q, $timeout) {
+	  var getMessages = function(isResolved) {
+//		  alert(isResolved);
 		var future = $q.defer();
 		 $timeout(function() {
-			future.resolve("a hello world message");
+			if(isResolved) 
+				future.resolve({message:"hello world!!!"});
+			else {
+				future.reject("Evil world!!!");
+			}
 		 }, 1000);
 		return future.promise;
 	  };
 	  
 	  return {
-		  getMessages : getMessages
+		  getMsgs : getMessages
 	  };
 	  
+  })
+  .run(function($rootScope){
+	  $rootScope.appStartedTime = new Date().toLocaleString();  
   })
   ;
