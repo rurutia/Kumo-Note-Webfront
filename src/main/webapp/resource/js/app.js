@@ -2,12 +2,30 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('easyNote', ['ngRoute','easyNote.filters', 'easyNote.services', 'easyNote.directives', 'easyNote.controllers','ngResource']).
-  config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/list', {templateUrl: 'partials/list.jsp'});
-    $routeProvider.when('/detail/:noteId/:subject/:content/:type', {templateUrl: 'partials/detail.jsp', controller: 'noteDetailControl'});
-    $routeProvider.otherwise({redirectTo: '/list'});
-  }])
+angular.module('easyNote', ['ui.router','easyNote.filters', 'easyNote.services', 'easyNote.directives', 'easyNote.controllers','ngResource'])
+.config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/404');
+	$stateProvider.state('list', {
+        url:'', 
+        templateUrl: 'partials/list.jsp'
+    });
+	$stateProvider.state('detail', {
+        url:'/detail?noteId&subject&content&type', 
+        templateUrl: 'partials/detail.jsp',
+        controller: 'noteDetailControl'
+    });
+	$stateProvider.state('404', {
+        url:'/404', 
+        templateUrl: 'partials/404.jsp'
+    });
+
+})
+
+//.config(['$routeProvider', function($routeProvider) {
+//    $routeProvider.when('/list', {templateUrl: 'partials/list.jsp'});
+//    $routeProvider.when('/detail/:noteId/:subject/:content/:type', {templateUrl: 'partials/detail.jsp', controller: 'noteDetailControl'});
+//    $routeProvider.otherwise({redirectTo: '/list'});
+//  }])
   .factory('Notes', function($resource){
 	  return $resource(
 			  'notes/:action/:id',

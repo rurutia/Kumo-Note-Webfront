@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html ng-app="easyNote">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,18 +19,19 @@ tr.selected {
 <ol class="breadcrumb" ng-controller="navigationControl">
   <li id="linkHome">
     <span ng-show="isActive">Home</span>
-  	<a ng-hide="isActive" href="#/list" ng-click="isActive=true">Home</a>
+  	<a ng-hide="isActive" href="${pageContext.request.contextPath}" ng-click="isActive=true">Home</a>
   </li>
   <li id="linkDetail" ng-show="isDetailActive">
     <span>Detail</span>
   </li>
 </ol>
 
- <div ng-view></div>
+	<!-- HERE WILL BE LOADED AN AJAX CONTENT -->
+	<ui-view ng-cloak></ui-view>
 </div>
 
   <script src="resource/lib/angular/angular.js"></script>
-  <script src="resource/lib/angular/angular-route.js"></script>
+  <script src="resource/lib/angular/angular-ui-router.js"></script>
   <script src="resource/lib/angular/angular-resource.js"></script>
   <script src="resource/js/app.js"></script>
   <script src="resource/js/services.js"></script>

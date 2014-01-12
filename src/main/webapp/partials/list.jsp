@@ -74,7 +74,11 @@
 		        <td>{{ note.date }}</td>
 		        <td>
 		        	<button class="btn btn-danger btn-small" ng-show="isSelected" ng-click="deleteNote(note.id)">delete</button>
+		        	<!--  
 		        	<a href="#/detail/{{note.id}}/{{note.subject}}/{{note.content}}/{{note.type}}" class="btn btn-danger btn-small" ng-show="isSelected">view</a>  
+		        	-->
+		        	<a ui-sref="detail({'noteId':note.id, 'subject':note.subject, 'content':note.content, 'type':note.type})" class="btn btn-danger btn-small" ng-show="isSelected">view</a>  
+
 		        </td>
 		      </tr>
 			</tbody>

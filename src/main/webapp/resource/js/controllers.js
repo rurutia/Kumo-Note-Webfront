@@ -71,15 +71,15 @@ myAppModule.
 
 // detail view controllers
 myAppModule
-.controller('noteDetailControl', function($scope, $routeParams, $http, $location, addNoteModel, Notes){
+.controller('noteDetailControl', function($scope, $stateParams, $http, $location, addNoteModel, Notes){
 	$scope.categories = addNoteModel.getCategories();
 	
 	angular.element($('#linkHome')).scope().isActive = false;
 	$scope.note = {};
-	$scope.note.noteId = $routeParams.noteId;
-	$scope.note.subject = $routeParams.subject;
-	$scope.note.content = $routeParams.content;
-	$scope.note.type = $routeParams.type;
+	$scope.note.noteId = $stateParams.noteId;
+	$scope.note.subject = $stateParams.subject;
+	$scope.note.content = $stateParams.content;
+	$scope.note.type = $stateParams.type;
 	
 	$scope.deleteNote = function() {
 	  Notes.delete(
