@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html ng-app="easyNote">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<link href="resource/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 tr.selected {
 	background-color:#ccc;
@@ -30,15 +29,18 @@ tr.selected {
 	<ui-view ng-cloak></ui-view>
 </div>
 
-  <script src="resource/lib/angular/angular.js"></script>
-  <script src="resource/lib/angular/angular-ui-router.js"></script>
-  <script src="resource/lib/angular/angular-resource.js"></script>
-  <script src="resource/js/app.js"></script>
-  <script src="resource/js/services.js"></script>
-  <script src="resource/js/controllers.js"></script>
-  <script src="resource/js/filters.js"></script>
-  <script src="resource/js/directives.js"></script>
-  <script src="resource/js/jquery-1.10.2.min.js"></script>
-  <script src="resource/js/bootstrap.min.js"></script>
+  <script src="vendor/jquery/jquery-1.10.2.min.js"></script>
+  <script src="vendor/angular/angular.js"></script>
+  <script src="vendor/angular/angular-resource.js"></script>
+  <script src="vendor/angular-modules/angular-ui-router.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="app/app.js"></script>
+  <script src="app/services.js"></script>
+  <script src="app/controllers.js"></script>
+  <script src="app/filters.js"></script>
+  <script src="app/directives.js"></script>
+
+
+
 </body>
 </html>

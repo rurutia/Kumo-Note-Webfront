@@ -12,7 +12,9 @@
  
 	<context:component-scan base-package="com.cbssoft.www" />
 	<mvc:annotation-driven />  
-	<mvc:resources  mapping="/resource/**" location="/resource/" /> 
+	<mvc:resources mapping="/app/**" location="/app/" /> 
+	<mvc:resources mapping="/assets/**" location="/assets/" /> 
+	<mvc:resources mapping="/vendor/**" location="/vendor/" /> 
 	
 	<bean id="dbProperties"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -53,8 +55,6 @@
 		</property>
 	</bean>
 	
-
-	
-
- 
+	<bean class="com.haoyumichael.note.application.DatabaseConfigurer" init-method="init"/>
+	 
 </beans>
