@@ -1,10 +1,10 @@
-	<div ng-controller="appInfo">
+	<div ng-controller="appInfo" style="text-align:center">
 		<h5>{{myApplication.describe()}} {{rule}}</h5>
 	</div>
 
-	<h5>app started time: {{appStartedTime}}</h5>
+	<h5 style="text-align:center">App started time: {{appStartedTime}}</h5>
 		
-	<div ng-controller="currentTimeControl">
+	<div ng-controller="currentTimeControl" style="text-align:center">
 		Current time: {{appCurrentTime}}
 	</div>
 	
@@ -29,7 +29,7 @@
 		    <label class="col-md-2 control-label">Type</label>
 		   <div class="col-md-10">
 				<select name="type" ng-model="note.category" ng-options="c.value as c.label group by c.group for c in categories"
-				 multiple class="form-control" tabindex="1" size="8">
+				 multiple class="form-control" tabindex="1" size="16">
 					<option value=""></option>
 				</select>		
 			</div>
@@ -43,7 +43,7 @@
 	</div>
 	
 	<div class="panel panel-primary" id="noteList" ng-controller="noteListControl">
-	  <div class="panel-heading">List notes</div>
+	  <div class="panel-heading">Notes List</div>
 	  <div class="panel-body">
 	    <select ng-model="orderProp">
 			<option value="id" selected="selected">id(smallest)</option>

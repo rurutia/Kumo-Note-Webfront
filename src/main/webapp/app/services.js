@@ -9,11 +9,18 @@ angular.module('easyNote.services', []).
   value('version', '0.1')
   .factory('addNoteModel', function() {
 	  var categories = [
-	                    {value:'Dart', label:'Dart', group:'front & back end'}, 
-	                    {value:'Java', label:'Java', group:'back end'}, 
-	                    {value:'JavaScript',label:'JavaScript', group:'front end'},
-	                    {value:'CSS',label:'CSS', group:'front end'},
-	                    {value:'MyBatis',label:'MyBatis', group:'back end'}
+	                    {value:'JavaScript', label:'JavaScript', group:'Language'}, 
+	                    {value:'Java', label:'Java', group:'Language'},
+	                    {value:'jQuery',label:'jQuery', group:'Web'},
+	                    {value:'HTML5',label:'HTML5', group:'Web'},
+	                    {value:'CSS3',label:'CSS3', group:'Web'},
+	                    {value:'MySQL', label:'MySQL', group:'Database'},
+	                    {value:'Hibernate', label:'Hibernate', group:'Database'},
+	                    {value:'MyBatis',label:'MyBatis', group:'Database'},
+	                    {value:'Ubuntu',label:'Ubuntu', group:'Operating System'},
+	                    {value:'Red Hat',label:'Red Hat', group:'Operating System'},
+	                    {value:'Windows',label:'Windows', group:'Operating System'},
+	                    {value:'Dev Tools',label:'Dev Tools', group:'Others'}
 	                   ];
 	  
 	  return {
