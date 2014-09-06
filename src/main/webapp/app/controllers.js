@@ -1,5 +1,11 @@
 'use strict';
 
+/* models */
+
+var dateTime = {
+	isRefresh: true	
+};
+
 /* Controllers */
 
 var myAppModule = angular.module('easyNote.controllers', []);
@@ -11,9 +17,26 @@ myAppModule.
 
 myAppModule.  
 	controller('currentTimeControl', function($scope, $interval) {
-		$interval(function() {
-			$scope.appCurrentTime = new Date().toLocaleString();  
-		}, 1000);
+		$scope.dateTime = dateTime;
+		
+		var f = function() {
+			return $interval(function() {
+				$scope.appCurrentTime = new Date().toLocaleString(); 
+			}, 1000);
+		};
+		
+		var intervalPromise = f();
+		
+		$scope.change = function() {
+			if($scope.dateTime.isRefresh) {
+				intervalPromise = f();
+			}
+			else {
+				$interval.cancel(intervalPromise);
+			}
+		};
+		
+
 	}).
   controller('appInfo', function($scope, MyApplication, promiseTest, $timeout) {
 	  $scope.myApplication = new MyApplication("1.27", "1.10.2", "3.1.0", "1.2.0");
@@ -36,7 +59,10 @@ myAppModule.
 				    function(result) {angular.element($('#noteList')).scope().notes = Notes.query();}
 				  	);
 	  };
-
+	  
+	  $('#addNoteAccordion').click(function(){
+		  $('#addNoteAccordion .panel-collapse').collapse('toggle');
+	  });
   })
   .controller('noteListControl', function($scope, $http, Notes) {
 	  $scope.orderProp = 'id';

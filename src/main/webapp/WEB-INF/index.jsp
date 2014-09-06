@@ -14,13 +14,15 @@
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Custom CSS -->
+    <!-- Landing-page CSS -->
     <link href="vendor/css/landing-page.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
