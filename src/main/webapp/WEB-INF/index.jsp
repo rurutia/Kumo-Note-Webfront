@@ -76,7 +76,7 @@
     <div class="intro-header">
 		<div class="container">
 
-            <div class="row">
+<!--             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
                         <h1>Kumo Note</h1>
@@ -89,7 +89,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
         <!-- /.container -->
@@ -105,10 +105,10 @@
 		
 			<ol class="breadcrumb" ng-controller="navigationControl">
 			  <li id="linkHome">
-			    <span ng-show="isActive">Home</span>
-			  	<a ng-hide="isActive" href="${pageContext.request.contextPath}" ng-click="isActive=true">Home</a>
+			    <span ng-show="isActive" class="btn btn-default">Home</span>
+			  	<a ng-hide="isActive" href="${pageContext.request.contextPath}" ng-click="isActive=true" class="btn btn-default">Home</a>
 			  </li>
-			  <li id="linkDetail" ng-show="isDetailActive">
+			  <li id="linkDetail" ng-show="">
 			    <span>Detail</span>
 			  </li>
 			</ol>

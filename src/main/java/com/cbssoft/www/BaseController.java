@@ -40,6 +40,7 @@ public class BaseController {
 		note.setContent("new content");
 		note.setSubject("new subject");
 		note.setType("new type");
+		note.setMainType("new mainType");
 		noteDao.insertNote(note);
 		return "fn";
 	}

@@ -5,8 +5,8 @@
 <mapper namespace="com.cbssoft.www.NoteMapper">
 
     <insert id="insertNote" parameterType="com.cbssoft.www.domain.Note">
-    	insert into NOTE (subject, content, type, date)
-    	values (#{subject}, #{content}, #{type}, now())
+    	insert into NOTE (subject, content, type, date, main_type)
+    	values (#{subject}, #{content}, #{type}, now(), #{mainType})
     </insert>   
     
     <delete id="deleteNote" parameterType="int">
@@ -15,7 +15,7 @@
     
     <update id="updateNote" parameterType="com.cbssoft.www.domain.Note">
     	update NOTE 
-    	set subject = #{subject}, content = #{content}, type = #{type}
+    	set subject = #{subject}, content = #{content}, type = #{type}, main_type = #{mainType} 
     	where id = #{id}
     </update>
     
@@ -25,10 +25,11 @@
     	<result property="content" column="content" />
     	<result property="type" column="type" />
     	<result property="date" column="date" />
+    	<result property="mainType" column="main_type" />
     </resultMap>
     
     <select id="selectNotes" resultMap="noteMap">
-    	select id, subject, content, type, date
+    	select id, subject, content, type, date, main_type
     	from
     	NOTE
     </select>   

@@ -7,6 +7,8 @@ public class Note {
 	String content;
 	String type;
 	String date;
+	String mainType;
+	
 	public int getId() {
 		return id;
 	}
@@ -36,6 +38,12 @@ public class Note {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public String getMainType() {
+		return mainType;
+	}
+	public void setMainType(String mainType) {
+		this.mainType = mainType;
 	}
 	
 }

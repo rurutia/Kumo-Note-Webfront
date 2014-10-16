@@ -4,5 +4,6 @@ create table NOTE (
     content text,
     type varchar(64),
     date datetime,
+    main_type varchar(64),
     primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;

@@ -21,7 +21,7 @@
 	
 <div class="panel-group" id="addNoteAccordion" ng-controller="addNoteControl">	
 	<div class="panel panel-primary note-panel-accordion" >
-	  <div class="panel-heading">
+	  <div id="addNoteCollapseHeading" class="panel-heading">
 		  <h5 class="panel-title">
 	        <a data-toggle="collapse">
 	          Add Note
@@ -67,14 +67,35 @@
 	
 	<div class="panel panel-primary" id="noteList" style="margin-top:20px" ng-controller="noteListControl">
 	  <div class="panel-heading">Notes List</div>
-	  <div class="panel-body">
-	    <select ng-model="orderProp">
-			<option value="id" selected="selected">id(smallest)</option>
-			<option value="-id" selected="selected">id(biggest)</option>
-			<option value="subject">subject</option>
-			<option value="date">date</option>
-		</select>
-		
+	  <div class="panel-body" ng-controller="noteItemCtrl">
+	  	<!-- Category buttons -->
+	  	<div class="btn-group" style="margin-right:5px" ng-repeat="(name, categories) in groups">
+		  <button type="button" ng-class="changeBtnStyle(name)" ng-click="selectMainType(name)">{{name}}</button>
+		  <button type="button" ng-class="changeBtnStyle(name, 'dropdown-toggle')" data-toggle="dropdown">
+		    <span class="caret"></span>
+		    <span class="sr-only">Toggle Dropdown</span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+			<li ng-repeat="category in categories">
+				<a href="#" ng-click="selectCategory(category)">{{category}}</a>
+			</li>		
+		  </ul>
+	   </div>
+	   
+	   <div class="row top-buffer">
+	    	<div class="col-md-2">
+			    <select ng-model="orderProp">
+					<option value="id" selected="selected">id(smallest)</option>
+					<option value="-id" selected="selected">id(biggest)</option>
+					<option value="subject">subject</option>
+					<option value="date">date</option>
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button type="button" ng-click="resetFilter()" class="btn btn-warning">Reset</button>
+			</div>
+		</div>
+	  	
 		<table  class="table">
 			<thead>
 				<tr>
@@ -82,18 +103,20 @@
 					<th>Subject</th>
 					<th>Content</th>
 					<th>Type</th>
+					<th>Main Type</th>
 					<th>Timestamp</th>
 					<th style="width:200px">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-		      <tr data-ng-repeat="note in notes | orderBy:orderProp" ng-controller="noteItemController" ng-class="{selected: isSelected}"
+		      <tr data-ng-repeat="note in notes | orderBy:orderProp | filter:categoryFilterFn" ng-class="{selected: isSelected}"
 		      ng-mouseenter="isSelected=true" ng-mouseleave="isSelected=false"
 		      > 
 		        <td>{{ note.id }}</td>
 		        <td>{{ note.subject }}</td>
 		        <td>{{ note.content }}</td>
 		        <td>{{ note.type }}</td>
+		        <td>{{ note.mainType }}</td>
 		        <td>{{ note.date }}</td>
 		        <td>
 		        	<button class="btn btn-danger btn-small" ng-show="isSelected" ng-click="deleteNote(note.id)">delete</button>

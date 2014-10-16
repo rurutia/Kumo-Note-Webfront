@@ -10,6 +10,10 @@ var dateTime = {
 
 var myAppModule = angular.module('easyNote.controllers', []);
 
+var c = function(msg) {
+	console.log(msg);
+};
+
 myAppModule.
   controller('navigationControl', function($scope) {
 	  $scope.isActive = true;
@@ -50,17 +54,25 @@ myAppModule.
   })
   .controller('addNoteControl', function($scope, $http, addNoteModel, MyApplication, Notes) {
 	  $scope.categories = addNoteModel.getCategories();
-	  
 	  $scope.postFormData = function() {
-		  var postData = $.param({subject: $scope.note.subject, content:$scope.note.content, type:$scope.note.category.join()});
+		  var mainType = null;
+		  angular.forEach($scope.categories, function(category) {
+			  if(category.value === $scope.note.category.join()) {
+				  mainType = category.group;
+			  }
+		  });
+		  
+		  // postData never used?
+		  var postData = $.param({subject: $scope.note.subject, content:$scope.note.content, type:$scope.note.category.join(), mainType: mainType});
+  		  
 		  Notes.save(
-				  	{action:'save'},
-				    {subject: $scope.note.subject, content:$scope.note.content, type:$scope.note.category.join()},
-				    function(result) {angular.element($('#noteList')).scope().notes = Notes.query();}
-				  	);
+		  	{action:'save'},
+		    {subject: $scope.note.subject, content:$scope.note.content, type:$scope.note.category.join(), mainType: mainType},
+		    function(result) {angular.element($('#noteList')).scope().notes = Notes.query();}
+		  	);
 	  };
 	  
-	  $('#addNoteAccordion').click(function(){
+	  $('div#addNoteCollapseHeading').click(function(){
 		  $('#addNoteAccordion .panel-collapse').collapse('toggle');
 	  });
   })
@@ -68,12 +80,62 @@ myAppModule.
 	  $scope.orderProp = 'id';
 	  
 	  $scope.notes = Notes.query();
-
+	  
 	  $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
 		angular.element($('#linkHome')).scope().isDetailActive = true;
 	  });
   })
-  .controller('noteItemController', function($scope, $http, Notes) {
+  .controller('noteItemCtrl', function($scope, $http, $filter, Notes, addNoteModel) {
+      // category drop down buttons	  
+	  $scope.groups = {};
+	  angular.forEach(addNoteModel.getCategories(), function(category) {
+		  var group = category.group; 
+		  if(typeof this[group] === 'undefined') {
+			  this[group] = [];
+		  }
+		  this[group].push(category.label);
+	  }, $scope.groups);
+	  
+	  
+	  var selectedCategory = null;
+	  var selectedMainType = null;
+	  
+	  $scope.selectCategory = function(category) {
+		  selectedCategory = category;
+		  for(var mainType in $scope.groups) {
+			  angular.forEach($scope.groups[mainType], function(cat) {
+				  if(cat === selectedCategory) {
+					  selectedMainType = mainType;
+				  }
+			  });
+		  }
+	  };
+	  
+	  $scope.selectMainType = function(mainType) {
+		  selectedMainType = mainType;
+	  };
+	  
+	  $scope.changeBtnStyle = function(mainType, fixedClass) {
+		  if(fixedClass) {
+			  return selectedMainType === mainType ? 'btn btn-success ' + fixedClass : 'btn btn-default ' + fixedClass;
+		  }
+		  else {
+			  return selectedMainType === mainType ? 'btn btn-success': 'btn btn-default';
+
+		  }
+	  };
+	  
+	  $scope.categoryFilterFn = function(note) {
+		  return selectedCategory == null && selectedMainType == null || note.type == selectedCategory || note.mainType == selectedMainType;
+	  };
+	  
+	  $scope.resetFilter = function() {
+		  selectedCategory = selectedMainType = null;
+	  };
+	  
+	  
+	  
+	  
 	  $scope.deleteNote = function(id) {
 		  var postData = $.param({id: id});
 		  Notes.delete(
