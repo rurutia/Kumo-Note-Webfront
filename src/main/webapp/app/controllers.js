@@ -86,7 +86,10 @@ myAppModule.
 	  });
   })
   .controller('noteItemCtrl', function($scope, $http, $filter, Notes, addNoteModel) {
-      // category drop down buttons	  
+      // filter info
+	  $scope.filterInfo = null;
+	  
+	  // category drop down buttons	  
 	  $scope.groups = {};
 	  angular.forEach(addNoteModel.getCategories(), function(category) {
 		  var group = category.group; 
@@ -101,6 +104,7 @@ myAppModule.
 	  var selectedMainType = null;
 	  
 	  $scope.selectCategory = function(category) {
+		  selectedMainType = null;
 		  selectedCategory = category;
 		  for(var mainType in $scope.groups) {
 			  angular.forEach($scope.groups[mainType], function(cat) {
@@ -109,10 +113,20 @@ myAppModule.
 				  }
 			  });
 		  }
+		  if(!$scope.filterInfo) {
+			  $scope.filterInfo = {};
+		  }
+		  $scope.filterInfo.category = selectedCategory;
+		  $scope.filterInfo.mainType = selectedMainType;
 	  };
 	  
 	  $scope.selectMainType = function(mainType) {
+		  selectedCategory = null;
 		  selectedMainType = mainType;
+		  if(!$scope.filterInfo) {
+			  $scope.filterInfo = {};
+		  }
+		  $scope.filterInfo.mainType = selectedMainType;
 	  };
 	  
 	  $scope.changeBtnStyle = function(mainType, fixedClass) {
@@ -126,11 +140,13 @@ myAppModule.
 	  };
 	  
 	  $scope.categoryFilterFn = function(note) {
-		  return selectedCategory == null && selectedMainType == null || note.type == selectedCategory || note.mainType == selectedMainType;
-	  };
+		  return (selectedCategory == null && selectedMainType == null)
+	  		|| (note.type == selectedCategory && note.mainType == selectedMainType)
+	  		|| (selectedCategory == null &&  note.mainType == selectedMainType);	  
+      };
 	  
 	  $scope.resetFilter = function() {
-		  selectedCategory = selectedMainType = null;
+		  selectedCategory = selectedMainType = $scope.filterInfo = null;
 	  };
 	  
 	  

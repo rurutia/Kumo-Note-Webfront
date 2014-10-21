@@ -68,6 +68,15 @@
 	<div class="panel panel-primary" id="noteList" style="margin-top:20px" ng-controller="noteListControl">
 	  <div class="panel-heading">Notes List</div>
 	  <div class="panel-body" ng-controller="noteItemCtrl">
+	    <!-- Filter info -->
+	    <div ng-show="filterInfo" class="alert alert-info alert-dismissible" role="alert">
+	      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	      <ul class="list-inline">
+			  <li ng-repeat="(name, value) in filterInfo"><strong>{{name}}: </strong>{{value}}</li>
+	      </ul>
+	    </div>
+	    
+	    <!--  Start of filter section -->
 	  	<!-- Category buttons -->
 	  	<div class="btn-group" style="margin-right:5px" ng-repeat="(name, categories) in groups">
 		  <button type="button" ng-class="changeBtnStyle(name)" ng-click="selectMainType(name)">{{name}}</button>
@@ -81,6 +90,9 @@
 			</li>		
 		  </ul>
 	   </div>
+	   
+	   <!--  End of filter section -->
+	   
 	   
 	   <div class="row top-buffer">
 	    	<div class="col-md-2">
