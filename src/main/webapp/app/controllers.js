@@ -52,7 +52,7 @@ myAppModule.
 	  })
 	  ;
   })
-  .controller('addNoteControl', function($scope, $http, addNoteModel, MyApplication, Notes) {
+  .controller('addNoteCtrl', function($scope, $http, addNoteModel, MyApplication, Notes) {
 	  $scope.categories = addNoteModel.getCategories();
 	  $scope.postFormData = function() {
 		  var mainType = null;
@@ -72,11 +72,22 @@ myAppModule.
 		  	);
 	  };
 	  
+	  $scope.notCollapsed = false;
+	  $scope.collapsed = true;
 	  $('div#addNoteCollapseHeading').click(function(){
-		  $('#addNoteAccordion .panel-collapse').collapse('toggle');
+		  var collapsable = $('#addNoteAccordion .panel-collapse');
+		  if(collapsable.hasClass('collapse')) {
+			  $scope.notCollapsed = true;
+			  $scope.collapsed = false;
+		  }
+		  else {
+			  $scope.notCollapsed = false;
+			  $scope.collapsed = true;
+		  }
+		  collapsable.collapse('toggle');
 	  });
   })
-  .controller('noteListControl', function($scope, $http, Notes) {
+  .controller('noteListCtrl', function($scope, $http, $filter, Notes, addNoteModel) {
 	  $scope.orderProp = 'id';
 	  
 	  $scope.notes = Notes.query();
@@ -84,8 +95,24 @@ myAppModule.
 	  $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
 		angular.element($('#linkHome')).scope().isDetailActive = true;
 	  });
-  })
-  .controller('noteItemCtrl', function($scope, $http, $filter, Notes, addNoteModel) {
+	  
+	  $scope.deleteNote = function(id) {
+		  var postData = $.param({id: id});
+		  Notes.delete(
+				  {action:'delete', id: id}, 
+				  $scope.removeDeletedNote(id)
+		        );
+	  }; 
+	  // delete success callback
+	  $scope.removeDeletedNote = function(id) {
+		  for(var i = 0; i < $scope.notes.length; i++) {
+	      		if( id == $scope.notes[i].id ) {
+		      		$scope.notes.splice(i,1);
+		      		break;
+	      		}
+	      	}
+	  };
+	  
       // filter info
 	  $scope.filterInfo = null;
 	  
@@ -148,27 +175,6 @@ myAppModule.
 	  $scope.resetFilter = function() {
 		  selectedCategory = selectedMainType = $scope.filterInfo = null;
 	  };
-	  
-	  
-	  
-	  
-	  $scope.deleteNote = function(id) {
-		  var postData = $.param({id: id});
-		  Notes.delete(
-				  {action:'delete', id: id}, 
-				  $scope.removeDeletedNote(id)
-		        );
-	  }; 
-	  // delete success callback
-	  $scope.removeDeletedNote = function(id) {
-		  for(var i = 0; i < $scope.notes.length; i++) {
-	      		if( id == $scope.notes[i].id ) {
-		      		$scope.notes.splice(i,1);
-		      		break;
-	      		}
-	      	}
-	  };
-	  
   })
   ;
 

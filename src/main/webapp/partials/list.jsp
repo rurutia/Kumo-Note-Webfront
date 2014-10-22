@@ -17,12 +17,12 @@
 		</form>
 		</div>
 	</div>
-	
-	
-<div class="panel-group" id="addNoteAccordion" ng-controller="addNoteControl">	
+		
+<div class="panel-group" id="addNoteAccordion" ng-controller="addNoteCtrl">	
 	<div class="panel panel-primary note-panel-accordion" >
 	  <div id="addNoteCollapseHeading" class="panel-heading">
 		  <h5 class="panel-title">
+		    <span ng-class="{'glyphicon':true, 'glyphicon-chevron-down':collapsed, 'glyphicon-chevron-up':notCollapsed}"></span>
 	        <a data-toggle="collapse">
 	          Add Note
 	        </a>
@@ -65,9 +65,9 @@
 
 
 	
-	<div class="panel panel-primary" id="noteList" style="margin-top:20px" ng-controller="noteListControl">
+	<div class="panel panel-primary" id="noteList" style="margin-top:20px" ng-controller="noteListCtrl">
 	  <div class="panel-heading">Notes List</div>
-	  <div class="panel-body" ng-controller="noteItemCtrl">
+	  <div class="panel-body">
 	    <!-- Filter info -->
 	    <div ng-show="filterInfo" class="alert alert-info alert-dismissible" role="alert">
 	      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -91,9 +91,6 @@
 		  </ul>
 	   </div>
 	   
-	   <!--  End of filter section -->
-	   
-	   
 	   <div class="row top-buffer">
 	    	<div class="col-md-2">
 			    <select ng-model="orderProp">
@@ -107,8 +104,11 @@
 				<button type="button" ng-click="resetFilter()" class="btn btn-warning">Reset</button>
 			</div>
 		</div>
+			
+	    <!--  End of filter section -->
+		
 	  	
-		<table  class="table">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>#</th>
