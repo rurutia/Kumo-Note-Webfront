@@ -4,15 +4,20 @@
 // Declare app level module which depends on filters, and services
 angular.module('easyNote', ['ui.router','easyNote.filters', 'easyNote.services', 'easyNote.directives', 'easyNote.controllers','ngResource'])
 .config(function($stateProvider, $urlRouterProvider) {
+//	http://stackoverflow.com/questions/20482051/how-to-set-a-default-state-with-angular-ui-router
+//	$urlRouterProvider.when('/list', '');
     $urlRouterProvider.otherwise('/404');
-	$stateProvider.state('list', {
+	$stateProvider.state('default', {
         url:'', 
+        templateUrl: 'partials/list.jsp'
+    });
+	$stateProvider.state('list', {
+        url:'/list', 
         templateUrl: 'partials/list.jsp'
     });
 	$stateProvider.state('detail', {
         url:'/detail?noteId&subject&content&type', 
-        templateUrl: 'partials/detail.jsp',
-        controller: 'noteDetailControl'
+        templateUrl: 'partials/detail.jsp'
     });
 	$stateProvider.state('404', {
         url:'/404', 
@@ -52,7 +57,8 @@ angular.module('easyNote', ['ui.router','easyNote.filters', 'easyNote.services',
 	  };
 	  
   })
-  .run(function($rootScope){
+  .run(function($rootScope, navBreadCrumb){
+	  navBreadCrumb.push({text: 'Home', link: 'list', isActive: false});
 	  $rootScope.appStartedTime = new Date().toLocaleString();  
   })
   ;

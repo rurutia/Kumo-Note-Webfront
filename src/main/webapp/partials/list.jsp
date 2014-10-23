@@ -69,8 +69,8 @@
 	  <div class="panel-heading">Notes List</div>
 	  <div class="panel-body">
 	    <!-- Filter info -->
-	    <div ng-show="filterInfo" class="alert alert-info alert-dismissible" role="alert">
-	      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	    <div ng-show="filterInfo" class="alert alert-info" role="alert">
+	      <button type="button" ng-click="resetFilter()" class="btn btn-warning pull-right">Reset</button>
 	      <ul class="list-inline">
 			  <li ng-repeat="(name, value) in filterInfo"><strong>{{name}}: </strong>{{value}}</li>
 	      </ul>
@@ -99,9 +99,6 @@
 					<option value="subject">subject</option>
 					<option value="date">date</option>
 				</select>
-			</div>
-			<div class="col-md-2">
-				<button type="button" ng-click="resetFilter()" class="btn btn-warning">Reset</button>
 			</div>
 		</div>
 			

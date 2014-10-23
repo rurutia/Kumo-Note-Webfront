@@ -104,13 +104,10 @@
 		<div class="container">
 		
 			<ol class="breadcrumb" ng-controller="navigationControl">
-			  <li id="linkHome">
-			    <span ng-show="isActive" class="btn btn-default">Home</span>
-			  	<a ng-hide="isActive" href="${pageContext.request.contextPath}" ng-click="isActive=true" class="btn btn-default">Home</a>
-			  </li>
-			  <li id="linkDetail" ng-show="">
-			    <span>Detail</span>
-			  </li>
+			  <li ng-repeat="item in itemList" ng-class="{'active': item.isActive}">
+				<span ng-if="item.isActive">{{item.text}}</span>  
+ 			  	<a ng-if="!item.isActive" ui-sref="{{item.link}}">{{item.text}}</a>
+ 			  </li>
 			</ol>
 		
 			<!-- HERE WILL BE LOADED AN AJAX CONTENT -->

@@ -29,6 +29,20 @@ angular.module('easyNote.services', []).
 			 } 
 	  };
   })
+  .factory('navBreadCrumb', function() {
+	  var itemList = [];
+	  return {
+		  push: function(item) {
+			  itemList.push(item);
+		  },
+		  pop: function(item) {
+			  return itemList.pop();
+		  },
+		  getAll: function(item) {
+			  return itemList;
+		  }
+	  };
+  })
   .factory('MyApplication', function() {
 	function MyApplication(angularVersion, jqueryVersion, springVersion, MyBatisVersion) {
 		this.angularVersion = angularVersion;

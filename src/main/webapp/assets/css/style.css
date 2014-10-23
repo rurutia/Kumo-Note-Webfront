@@ -1,4 +1,10 @@
-.top-buffer { margin-top:10px; }
+.alert-info .btn {
+	margin-top: -6px;
+}
+
+.top-buffer { 
+	margin-top:10px; 
+}
 
 div.note-panel-accordion .panel-heading {
 	cursor: pointer;

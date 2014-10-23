@@ -15,9 +15,11 @@ var c = function(msg) {
 };
 
 myAppModule.
-  controller('navigationControl', function($scope) {
-	  $scope.isActive = true;
+  controller('navigationControl', function($scope, navBreadCrumb) {
+//	  $scope.isActive = true;
+	  $scope.itemList = navBreadCrumb.getAll();
   });
+
 
 myAppModule.  
 	controller('currentTimeControl', function($scope, $interval) {
@@ -87,13 +89,13 @@ myAppModule.
 		  collapsable.collapse('toggle');
 	  });
   })
-  .controller('noteListCtrl', function($scope, $http, $filter, Notes, addNoteModel) {
+  .controller('noteListCtrl', function($scope, $http, $filter, $location, navBreadCrumb, Notes, addNoteModel) {
 	  $scope.orderProp = 'id';
 	  
 	  $scope.notes = Notes.query();
 	  
 	  $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
-		angular.element($('#linkHome')).scope().isDetailActive = true;
+//		angular.element($('#linkHome')).scope().isDetailActive = true;
 	  });
 	  
 	  $scope.deleteNote = function(id) {
@@ -175,16 +177,20 @@ myAppModule.
 	  $scope.resetFilter = function() {
 		  selectedCategory = selectedMainType = $scope.filterInfo = null;
 	  };
+	  
+	  
+	  $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
+		  navBreadCrumb.pop();
+	  });
   })
   ;
 
 
 // detail view controllers
 myAppModule
-.controller('noteDetailControl', function($scope, $stateParams, $http, $location, addNoteModel, Notes){
+.controller('noteDetailControl', function($scope, $stateParams, $http, $location, navBreadCrumb, addNoteModel, Notes){
 	$scope.categories = addNoteModel.getCategories();
 	
-	angular.element($('#linkHome')).scope().isActive = false;
 	$scope.note = {};
 	$scope.note.noteId = $stateParams.noteId;
 	$scope.note.subject = $stateParams.subject;
@@ -211,7 +217,7 @@ myAppModule
 	};
 	  
     $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
-	  angular.element($('#linkHome')).scope().isDetailActive = false;
-	});
+    	navBreadCrumb.push({text: $stateParams.subject, isActive: true})
+    });
 })
 ;
