@@ -1,4 +1,4 @@
-package com.cbssoft.www.domain;
+package com.haoyumichael.note.domain;
 
 public class Note {
 

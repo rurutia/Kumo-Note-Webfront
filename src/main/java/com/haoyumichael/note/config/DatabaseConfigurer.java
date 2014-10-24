@@ -1,4 +1,4 @@
-package com.haoyumichael.note.application;
+package com.haoyumichael.note.config;
 
 import java.io.IOException;
 import java.sql.Connection;

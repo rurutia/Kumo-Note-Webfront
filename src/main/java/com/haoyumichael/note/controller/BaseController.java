@@ -1,4 +1,4 @@
-package com.cbssoft.www;
+package com.haoyumichael.note.controller;
  
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cbssoft.www.dao.NoteDao;
-import com.cbssoft.www.domain.Note;
+import com.haoyumichael.note.dao.NoteDao;
+import com.haoyumichael.note.domain.Note;
 
 @Controller
 @RequestMapping("/")

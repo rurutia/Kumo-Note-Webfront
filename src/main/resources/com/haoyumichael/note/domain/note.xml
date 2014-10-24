@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.cbssoft.www.NoteMapper">
+<mapper namespace="com.haoyumichael.note.NoteMapper">
 
-    <insert id="insertNote" parameterType="com.cbssoft.www.domain.Note">
+    <insert id="insertNote" parameterType="com.haoyumichael.note.domain.Note">
     	insert into NOTE (subject, content, type, date, main_type)
     	values (#{subject}, #{content}, #{type}, now(), #{mainType})
     </insert>   
@@ -13,13 +13,13 @@
 		delete from NOTE where id = #{id}
     </delete>
     
-    <update id="updateNote" parameterType="com.cbssoft.www.domain.Note">
+    <update id="updateNote" parameterType="com.haoyumichael.note.domain.Note">
     	update NOTE 
     	set subject = #{subject}, content = #{content}, type = #{type}, main_type = #{mainType} 
     	where id = #{id}
     </update>
     
-    <resultMap id="noteMap" type="com.cbssoft.www.domain.Note" >
+    <resultMap id="noteMap" type="com.haoyumichael.note.domain.Note" >
     	<result property="id" column="id" />
     	<result property="subject" column="subject" />
     	<result property="content" column="content" />

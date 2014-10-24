@@ -4,6 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <mappers>
-    <mapper resource="com/cbssoft/www/domain/note.xml"/>
+    <mapper resource="com/haoyumichael/note/domain/note.xml"/>
   </mappers>
 </configuration>

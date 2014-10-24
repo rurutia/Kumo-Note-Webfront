@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
  
-	<context:component-scan base-package="com.cbssoft.www" />
+	<context:component-scan base-package="com.haoyumichael.note" />
 	<mvc:annotation-driven />  
 	<mvc:resources mapping="/app/**" location="/app/" /> 
 	<mvc:resources mapping="/assets/**" location="/assets/" /> 
@@ -35,16 +35,13 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
  	  <property name="dataSource" ref="dataSource" />
  	  <property name="configLocation" value="classpath:config.xml" />
- 	  <!--  
- 	  <property name="mapperLocations" value="classpath*:com/cbssoft/www/**/*.xml" />
- 	  -->
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
       <constructor-arg index="0" ref="sqlSessionFactory" />
     </bean>
     
-    <bean id="noteDao" class="com.cbssoft.www.dao.NoteDao" />
+    <bean id="noteDao" class="com.haoyumichael.note.dao.NoteDao" />
  
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
@@ -55,6 +52,6 @@
 		</property>
 	</bean>
 	
-	<bean class="com.haoyumichael.note.application.DatabaseConfigurer" init-method="init"/>
+	<bean class="com.haoyumichael.note.config.DatabaseConfigurer" init-method="init"/>
 	 
 </beans>

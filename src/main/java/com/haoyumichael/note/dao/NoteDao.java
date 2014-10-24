@@ -1,4 +1,4 @@
-package com.cbssoft.www.dao;
+package com.haoyumichael.note.dao;
 
 
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cbssoft.www.domain.Note;
+import com.haoyumichael.note.domain.Note;
 
 public class NoteDao {
 
@@ -14,19 +14,19 @@ public class NoteDao {
 	  private SqlSession sqlSession;
 	  
 	  public List<Note> selectNotes() {
-		  return sqlSession.selectList("com.cbssoft.www.NoteMapper.selectNotes");
+		  return sqlSession.selectList("com.haoyumichael.note.NoteMapper.selectNotes");
 	  }
 	  
 	  public void insertNote(Note note) {
-		  sqlSession.insert("com.cbssoft.www.NoteMapper.insertNote", note);
+		  sqlSession.insert("com.haoyumichael.note.NoteMapper.insertNote", note);
 	  }
 	  
 	  public void deleteNote(int id) {
-		  sqlSession.delete("com.cbssoft.www.NoteMapper.deleteNote", id);
+		  sqlSession.delete("com.haoyumichael.note.NoteMapper.deleteNote", id);
 	  }
 	  
 	  public void updateNote(Note note) {
-		  sqlSession.update("com.cbssoft.www.NoteMapper.updateNote", note);
+		  sqlSession.update("com.haoyumichael.note.NoteMapper.updateNote", note);
 	  }
 	  
 }
