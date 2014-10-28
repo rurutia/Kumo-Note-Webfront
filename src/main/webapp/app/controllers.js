@@ -95,7 +95,6 @@ myAppModule.
 	  $scope.notes = Notes.query();
 	  
 	  $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
-//		angular.element($('#linkHome')).scope().isDetailActive = true;
 	  });
 	  
 	  $scope.deleteNote = function(id) {
