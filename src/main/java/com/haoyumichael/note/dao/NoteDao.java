@@ -17,6 +17,10 @@ public class NoteDao {
 		  return sqlSession.selectList("com.haoyumichael.note.NoteMapper.selectNotes");
 	  }
 	  
+	  public Note selectSingleNote(int id) {
+		  return sqlSession.selectOne("com.haoyumichael.note.NoteMapper.selectSingleNote", id);
+	  }
+	  
 	  public void insertNote(Note note) {
 		  sqlSession.insert("com.haoyumichael.note.NoteMapper.insertNote", note);
 	  }

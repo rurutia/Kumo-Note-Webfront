@@ -32,6 +32,11 @@
     	select id, subject, content, type, date, main_type
     	from
     	NOTE
-    </select>   
+    </select> 
+    
+    <select id="selectSingleNote" parameterType="int" resultMap="noteMap">
+    	select id, subject, content, type, date, main_type
+    	from NOTE where id = #{id}
+    </select>  
     
 </mapper>

@@ -188,36 +188,33 @@ myAppModule.
 
 // detail view controllers
 myAppModule
-.controller('noteDetailControl', function($scope, $stateParams, $http, $location, navBreadCrumb, addNoteModel, Notes){
-	$scope.categories = addNoteModel.getCategories();
+.controller('noteDetailControl', function($scope, $stateParams, $location, navBreadCrumb, addNoteModel, Notes){
+	Notes.get({id: $stateParams.noteId}, function(data) {
+		$scope.note = data;
+		navBreadCrumb.push({text: $scope.note.subject, isActive: true})
+	});
 	
-	$scope.note = {};
-	$scope.note.noteId = $stateParams.noteId;
-	$scope.note.subject = $stateParams.subject;
-	$scope.note.content = $stateParams.content;
-	$scope.note.type = $stateParams.type;
+	$scope.categories = addNoteModel.getCategories();
 	
 	$scope.deleteNote = function() {
 	  Notes.delete(
-			      {action:'delete', id: $scope.note.noteId}, 
-				  function() {
-			      	$location.path('#/list');}
-			    );
+				      {action:'delete', id: $scope.note.id}, 
+					  function() {
+				      	$location.path('#/list');
+				      }
+			      );
 	};
 	  
 	$scope.updateNote = function() {
 	  var noteType = $scope.note.type;
       if(typeof $scope.note.type === 'object')
 		  noteType = noteType.join();
-	  var postData = $.param({id: $scope.note.noteId, subject: $scope.note.subject, content: $scope.note.content, type: noteType});
+	  var postData = $.param({id: $scope.note.id, subject: $scope.note.subject, content: $scope.note.content, type: noteType});
 	  Notes.update(
 			  {action:'update'},
-			  {id: $scope.note.noteId, subject: $scope.note.subject, content: $scope.note.content, type: noteType}
+			  {id: $scope.note.id, subject: $scope.note.subject, content: $scope.note.content, type: noteType}
 	  );
 	};
 	  
-    $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
-    	navBreadCrumb.push({text: $stateParams.subject, isActive: true})
-    });
 })
 ;

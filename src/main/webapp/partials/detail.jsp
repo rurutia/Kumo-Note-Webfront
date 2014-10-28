@@ -4,7 +4,7 @@
 		<form method="post" class="form-horizontal">
 		  <div class="form-group">
 		    <label class="col-md-2 control-label">id</label>
-		    <pre class="col-md-3">{{note.noteId}}</pre>
+		    <pre class="col-md-3">{{note.id}}</pre>
 		  </div>
 		  <div class="form-group">
 		    <label for="inputEmail1" class="col-md-2 control-label">Subject</label>

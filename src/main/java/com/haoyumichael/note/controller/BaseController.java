@@ -33,6 +33,13 @@ public class BaseController {
 		return mapper.writeValueAsString(noteDao.selectNotes());
 	}
 	
+	@RequestMapping(value="/notes/load/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public String getSingleNote(@PathVariable int id) throws JsonGenerationException, JsonMappingException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(noteDao.selectSingleNote(id));
+	}
+	
 	@RequestMapping(value="/note", method = RequestMethod.GET)
 	@ResponseBody
 	public String insertNote() {
