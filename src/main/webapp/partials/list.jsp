@@ -68,6 +68,7 @@
 	<div class="panel panel-primary" id="noteList" style="margin-top:20px" ng-controller="noteListCtrl">
 	  <div class="panel-heading">Notes List</div>
 	  <div class="panel-body">
+	    
 	    <!-- Filter info -->
 	    <div ng-show="filterInfo" class="alert alert-info" role="alert">
 	      <button type="button" ng-click="resetFilter()" class="btn btn-warning pull-right">Reset</button>
@@ -93,9 +94,9 @@
 	   
 	   <div class="row top-buffer">
 	    	<div class="col-md-2">
-			    <select ng-model="orderProp">
-					<option value="id" selected="selected">id(smallest)</option>
-					<option value="-id" selected="selected">id(biggest)</option>
+			    <select class="form-control" ng-init="orderProp='id'" ng-model="orderProp">
+					<option value="id">id(smallest)</option>
+					<option value="-id">id(biggest)</option>
 					<option value="subject">subject</option>
 					<option value="date">date</option>
 				</select>
@@ -104,7 +105,7 @@
 			
 	    <!--  End of filter section -->
 		
-	  	
+	  	<!--  Start of list -->
 		<table class="table">
 			<thead>
 				<tr>
@@ -128,7 +129,7 @@
 		        <td>{{ note.mainType }}</td>
 		        <td>{{ note.date }}</td>
 		        <td>
-		        	<button class="btn btn-danger btn-small" ng-show="isSelected" ng-click="deleteNote(note.id)">delete</button>
+		        	<button class="btn btn-danger btn-small" ng-show="isSelected" ng-click="deleteNote(note)">delete</button>
 		        	<!--  
 		        	<a href="#/detail/{{note.id}}/{{note.subject}}/{{note.content}}/{{note.type}}" class="btn btn-danger btn-small" ng-show="isSelected">view</a>  
 		        	-->

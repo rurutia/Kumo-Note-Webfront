@@ -74,7 +74,7 @@ public class BaseController {
 		return "update ok"; 
 	}
 	
-	@RequestMapping(value="/notes/delete/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value="/notes/load/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String deleteNote(@PathVariable int id) {
 		System.out.println("deleting note.......");

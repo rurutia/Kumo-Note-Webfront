@@ -90,29 +90,18 @@ myAppModule.
 	  });
   })
   .controller('noteListCtrl', function($scope, $http, $filter, $location, navBreadCrumb, Notes, addNoteModel) {
-	  $scope.orderProp = 'id';
+//	  $scope.orderProp = 'id';
 	  
 	  $scope.notes = Notes.query();
 	  
 	  $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
 	  });
 	  
-	  $scope.deleteNote = function(id) {
-		  var postData = $.param({id: id});
-		  Notes.delete(
-				  {action:'delete', id: id}, 
-				  $scope.removeDeletedNote(id)
-		        );
+	  $scope.deleteNote = function(note) {
+		  note.$delete().then(function(){
+			  // do nothing at the moment;
+		  });
 	  }; 
-	  // delete success callback
-	  $scope.removeDeletedNote = function(id) {
-		  for(var i = 0; i < $scope.notes.length; i++) {
-	      		if( id == $scope.notes[i].id ) {
-		      		$scope.notes.splice(i,1);
-		      		break;
-	      		}
-	      	}
-	  };
 	  
       // filter info
 	  $scope.filterInfo = null;
