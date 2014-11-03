@@ -2,7 +2,7 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('easyNote', ['ui.router','easyNote.filters', 'easyNote.services', 'easyNote.directives', 'easyNote.controllers','ngResource'])
+angular.module('easyNoteApp', ['ui.router','easyNoteApp.filters', 'easyNoteApp.services', 'easyNoteApp.directives', 'easyNoteApp.controllers','ngResource'])
 .config(function($stateProvider, $urlRouterProvider) {
 //	http://stackoverflow.com/questions/20482051/how-to-set-a-default-state-with-angular-ui-router
 //	$urlRouterProvider.when('/list', '');

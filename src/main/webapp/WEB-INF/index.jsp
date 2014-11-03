@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="easyNote">
+<html ng-app="easyNoteApp">
 
 <head>
 
@@ -39,7 +39,6 @@
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">

@@ -1,4 +1,4 @@
-	<div ng-controller="appInfo" style="text-align:center">
+	<div ng-controller="appInfo" style="text-align:center" hightlight>
 		<h5>{{myApplication.describe()}} {{rule}}</h5>
 	</div>
 

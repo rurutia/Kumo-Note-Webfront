@@ -5,7 +5,7 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('easyNote.services', []).
+angular.module('easyNoteApp.services', []).
   value('version', '0.1')
   .factory('addNoteModel', function() {
 	  var categories = [

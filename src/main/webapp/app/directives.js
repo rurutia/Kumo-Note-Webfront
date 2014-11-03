@@ -3,9 +3,10 @@
 /* Directives */
 
 
-angular.module('easyNote.directives', []).
-  directive('appVersion', ['version', function(version) {
+angular.module('easyNoteApp.directives', []).
+  directive('hightlight', function() {
     return function(scope, elm, attrs) {
-      elm.text(version);
+      console.log(scope.myApplication);
+      elm.css('color', 'red');
     };
-  }]);
+  });

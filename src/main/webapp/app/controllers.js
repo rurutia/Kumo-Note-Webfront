@@ -8,7 +8,7 @@ var dateTime = {
 
 /* Controllers */
 
-var myAppModule = angular.module('easyNote.controllers', []);
+var myAppModule = angular.module('easyNoteApp.controllers', []);
 
 var c = function(msg) {
 	console.log(msg);
@@ -16,7 +16,6 @@ var c = function(msg) {
 
 myAppModule.
   controller('navigationControl', function($scope, navBreadCrumb) {
-//	  $scope.isActive = true;
 	  $scope.itemList = navBreadCrumb.getAll();
   });
 
@@ -78,14 +77,8 @@ myAppModule.
 	  $scope.collapsed = true;
 	  $('div#addNoteCollapseHeading').click(function(){
 		  var collapsable = $('#addNoteAccordion .panel-collapse');
-		  if(collapsable.hasClass('collapse')) {
-			  $scope.notCollapsed = true;
-			  $scope.collapsed = false;
-		  }
-		  else {
-			  $scope.notCollapsed = false;
-			  $scope.collapsed = true;
-		  }
+		  $scope.notCollapsed = !$scope.notCollapsed;
+		  $scope.collapsed = !$scope.collapsed;
 		  collapsable.collapse('toggle');
 	  });
   })
