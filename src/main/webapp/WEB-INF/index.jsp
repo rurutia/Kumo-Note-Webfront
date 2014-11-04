@@ -14,6 +14,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
+    <!-- jQuery UI CSS -->
+    <link href="vendor/css/jquery-ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css" />
+
     <!-- Landing-page CSS -->
     <link href="vendor/css/landing-page.css" rel="stylesheet">
 
@@ -52,6 +55,13 @@
                 </button>
                 <a class="navbar-brand" href="#">Kumo Note</a>
             </div>
+
+		    <!-- Current Date Time -->
+            <div class="navbar-header navbar-text" ng-controller="currentDateTimeCtrl">
+                <span>{{currentDateTime}}</span>
+					<input type="checkbox" ng-model="isRefresh" />
+            </div>     
+
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -97,7 +107,6 @@
     <!-- /.intro-header -->
 
     <!-- Page Content -->
-
      <div class="content-section-a">
 
 		<div class="container">
@@ -199,7 +208,7 @@
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
                             <a href="#services">Services</a>
-                        </li>
+                        $( document ).tooltip();</li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
                             <a href="#contact">Contact</a>
@@ -216,7 +225,11 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    
+
+    <!-- jQuery UI Version 1.10.0 -->
+    <script src="vendor/jquery/jquery-ui-1.10.4.custom.js"></script>
+
+
 	  <script src="vendor/angular/angular.js"></script>
 	  <script src="vendor/angular/angular-resource.js"></script>
 	  <script src="vendor/angular-modules/angular-ui-router.js"></script>

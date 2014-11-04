@@ -2,9 +2,9 @@
 
 /* models */
 
-var dateTime = {
-	isRefresh: true	
-};
+//var dateTime = {
+//	isRefresh: true	
+//};
 
 /* Controllers */
 
@@ -21,27 +21,21 @@ myAppModule.
 
 
 myAppModule.  
-	controller('currentTimeControl', function($scope, $interval) {
-		$scope.dateTime = dateTime;
-		
-		var f = function() {
-			return $interval(function() {
-				$scope.appCurrentTime = new Date().toLocaleString(); 
-			}, 1000);
-		};
-		
-		var intervalPromise = f();
-		
-		$scope.change = function() {
-			if($scope.dateTime.isRefresh) {
-				intervalPromise = f();
+	controller('currentDateTimeCtrl', function($scope, $interval) {
+		$scope.isRefresh = true;
+		var intervalPromise;
+		$scope.$watch('isRefresh', function(newValue) {
+			if(newValue) {
+			    intervalPromise = $interval(function() {
+					$scope.currentDateTime = new Date().toLocaleString(); 
+			    }, 1000);
 			}
 			else {
-				$interval.cancel(intervalPromise);
+				if(intervalPromise) {
+					$interval.cancel(intervalPromise);
+				}
 			}
-		};
-		
-
+		});
 	}).
   controller('appInfo', function($scope, MyApplication, promiseTest, $timeout) {
 	  $scope.myApplication = new MyApplication("1.27", "1.10.2", "3.1.0", "1.2.0");

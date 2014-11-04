@@ -4,20 +4,6 @@
 
 	<h5 style="text-align:center">App started time: {{appStartedTime}}</h5>
 		
-	<div class="row" ng-controller="currentTimeControl">
-		<div class="col-md-3">Current time: {{appCurrentTime}}</div>
-		<div class="col-md-3">
-		<form role="form-inline">
-		  	<div class="form-group">
-			  	<label>
-				<input type="checkbox" ng-model="dateTime.isRefresh" ng-change="change()" />
-				Refresh
-				</label>
-			</div>
-		</form>
-		</div>
-	</div>
-		
 <div class="panel-group" id="addNoteAccordion" ng-controller="addNoteCtrl">	
 	<div class="panel panel-primary note-panel-accordion" >
 	  <div id="addNoteCollapseHeading" class="panel-heading">
