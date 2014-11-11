@@ -44,22 +44,25 @@ angular.module('easyNoteApp.services', []).
 	  };
   })
   .factory('MyApplication', function() {
-	function MyApplication(angularVersion, jqueryVersion, springVersion, MyBatisVersion) {
+	function result(angularVersion, jqueryVersion, springVersion, MyBatisVersion) {
 		this.angularVersion = angularVersion;
 		this.jqueryVersion = jqueryVersion;
 		this.springVersion= springVersion;
 		this.MyBatisVersion = MyBatisVersion;
 	}
 	
-	MyApplication.prototype.describe = function() {
+	result.prototype.getJSVersions = function() {
 		return "AngularJS: v" + this.angularVersion + " jQuery v:" + this.jqueryVersion;
 	};
 	
-	MyApplication.rule = function() {
-		var rule = {MAX_CHARS_INPUT:100};
-		return rule;
+	result.prototype.getStartTime = function() {
+		return this.startTime;
 	};
 	
-	return MyApplication;
+	result.prototype.setStartTime = function(startTime) {
+		this.startTime = startTime;
+	};
+	
+	return result;
   })
   ;

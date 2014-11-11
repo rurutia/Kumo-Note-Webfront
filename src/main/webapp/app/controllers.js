@@ -27,7 +27,7 @@ myAppModule.
 		$scope.$watch('isRefresh', function(newValue) {
 			if(newValue) {
 			    intervalPromise = $interval(function() {
-					$scope.currentDateTime = new Date().toLocaleString(); 
+					$scope.currentDateTime = new Date(); 
 			    }, 1000);
 			}
 			else {
@@ -36,9 +36,13 @@ myAppModule.
 				}
 			}
 		});
+		
+		$scope.addContent = function() {
+			$scope.currentDateTime += 'added content';
+		};
 	}).
-  controller('appInfo', function($scope, MyApplication, promiseTest, $timeout) {
-	  $scope.myApplication = new MyApplication("1.27", "1.10.2", "3.1.0", "1.2.0");
+  controller('appInfoCtrl', function($rootScope, $scope, promiseTest, $timeout) {
+	  $scope.appInfo = $rootScope.appInfo;
 
 	  promiseTest.getMsgs(false).then(function(messageObj) {
 		  $scope.msg  = messageObj.message;

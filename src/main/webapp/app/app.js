@@ -1,5 +1,12 @@
 'use strict';
 
+$(document).ready(function () {
+	$('a.navbar-brand').click(function (e) {
+		angular.element(currentDateTime).scope().$apply('addContent()');
+	});
+});
+
+
 // Declare app level module which depends on filters, and services
 angular.module('easyNoteApp', ['ui.router','easyNoteApp.filters', 'easyNoteApp.services', 'easyNoteApp.directives', 'easyNoteApp.controllers','ngResource'])
 .config(function($stateProvider, $urlRouterProvider) {
@@ -56,8 +63,11 @@ angular.module('easyNoteApp', ['ui.router','easyNoteApp.filters', 'easyNoteApp.s
 	  };
 	  
   })
-  .run(function($rootScope, navBreadCrumb){
-	  navBreadCrumb.push({text: 'Home', link: 'list', isActive: false});
-	  $rootScope.appStartedTime = new Date().toLocaleString();  
+  .run(function($rootScope, MyApplication, navBreadCrumb){
+	  var appInfo = new MyApplication("1.27", "1.10.2", "3.1.0", "1.2.0");
+	  appInfo.setStartTime(new Date().toLocaleString());
+	  $rootScope.appInfo = appInfo;
+
+	  navBreadCrumb.push({text: 'Home', link: 'list', isActive: false}); 
   })
   ;

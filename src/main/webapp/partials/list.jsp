@@ -1,8 +1,4 @@
-	<div ng-controller="appInfo" style="text-align:center" hightlight>
-		<h5>{{myApplication.describe()}} {{rule}}</h5>
-	</div>
-
-	<h5 style="text-align:center">App started time: {{appStartedTime}}</h5>
+<div ng-controller="appInfoCtrl" app-info style="text-align:center"></div>
 		
 <div class="panel-group" id="addNoteAccordion" ng-controller="addNoteCtrl">	
 	<div class="panel panel-primary note-panel-accordion" >

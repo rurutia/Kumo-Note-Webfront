@@ -58,8 +58,8 @@
 
 		    <!-- Current Date Time -->
             <div class="navbar-header navbar-text" ng-controller="currentDateTimeCtrl">
-                <span>{{currentDateTime}}</span>
-					<input type="checkbox" ng-model="isRefresh" />
+                <span id="currentDateTime">{{currentDateTime | date:"dd/MMM/yyyy hh:mm:ss"}}</span>
+			    <input type="checkbox" ng-model="isRefresh" />
             </div>     
 
             <!-- Collect the nav links, forms, and other content for toggling -->
