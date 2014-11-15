@@ -109,7 +109,7 @@
 		        <td>{{ note.content }}</td>
 		        <td>{{ note.type }}</td>
 		        <td>{{ note.mainType }}</td>
-		        <td>{{ note.date }}</td>
+		        <td>{{ note.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
 		        <td>
 		        	<button class="btn btn-danger btn-small" ng-show="isSelected" ng-click="deleteNote(note)">delete</button>
 		        	<!--  
