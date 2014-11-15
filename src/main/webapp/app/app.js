@@ -39,7 +39,7 @@ angular.module('easyNoteApp', ['ui.router','easyNoteApp.filters', 'easyNoteApp.s
 //  }])
   .factory('Notes', function($resource){
 	  return $resource(
-			  'notes/:action/:id',
+			  '/kumo-note-restapi/notes/:action/:id',
 			  {action:'load', id:'@id'},
 			  {update:{method:'PUT'}}
 	  );

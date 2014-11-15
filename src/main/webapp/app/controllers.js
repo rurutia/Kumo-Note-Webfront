@@ -188,10 +188,17 @@ myAppModule
 	  var noteType = $scope.note.type;
       if(typeof $scope.note.type === 'object')
 		  noteType = noteType.join();
-	  var postData = $.param({id: $scope.note.id, subject: $scope.note.subject, content: $scope.note.content, type: noteType});
+      
+	  var mainType = null;
+	  angular.forEach($scope.categories, function(category) {
+		  if(category.value === noteType) {
+			  mainType = category.group;
+		  }
+	  });
+      
 	  Notes.update(
 			  {action:'update'},
-			  {id: $scope.note.id, subject: $scope.note.subject, content: $scope.note.content, type: noteType}
+			  {id: $scope.note.id, subject: $scope.note.subject, content: $scope.note.content, type: noteType, mainType: mainType}
 	  );
 	};
 	  
