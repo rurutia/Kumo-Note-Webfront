@@ -91,31 +91,31 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>#</th>
-					<th>Subject</th>
+					<th style="width:5%">#</th>
+					<th style="width:15%">Subject</th>
 					<th>Content</th>
-					<th>Type</th>
-					<th>Main Type</th>
-					<th>Timestamp</th>
-					<th style="width:200px">Action</th>
+					<th style="width:10%">Type</th>
+					<th style="width:10%">Main Type</th>
+					<th style="width:10%">Timestamp</th>
+					<th style="width:250px">Action</th>
 				</tr>
 			</thead>
 			<tbody>
 		      <tr data-ng-repeat="note in notes | orderBy:orderProp | filter:categoryFilterFn" ng-class="{selected: isSelected}"
-		      ng-mouseenter="isSelected=true" ng-mouseleave="isSelected=false"
-		      > 
+		      ng-mouseenter="isSelected=true" ng-mouseleave="isSelected=false" > 
 		        <td>{{ note.id }}</td>
 		        <td>{{ note.subject }}</td>
-		        <td>{{ note.content }}</td>
+ 		        <td syntax-highlight content="{{note.content}}" language-type="{{note.type}}">
+                </td>
 		        <td>{{ note.type }}</td>
 		        <td>{{ note.mainType }}</td>
 		        <td>{{ note.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
 		        <td>
-		        	<button class="btn btn-danger btn-small" ng-show="isSelected" ng-click="deleteNote(note)">delete</button>
+		        	<button class="btn btn-danger btn-xs" ng-show="isSelected" ng-click="deleteNote(note)">delete</button>
 		        	<!--  
 		        	<a href="#/detail/{{note.id}}/{{note.subject}}/{{note.content}}/{{note.type}}" class="btn btn-danger btn-small" ng-show="isSelected">view</a>  
 		        	-->
-		        	<a ui-sref="detail({'noteId':note.id, 'subject':note.subject, 'content':note.content, 'type':note.type})" class="btn btn-danger btn-small" ng-show="isSelected">view</a>  
+		        	<a ui-sref="detail({'noteId':note.id, 'subject':note.subject, 'content':note.content, 'type':note.type})" class="btn btn-danger btn-xs" ng-show="isSelected">view</a>  
 
 		        </td>
 		      </tr>

@@ -19,6 +19,9 @@
 
     <!-- Landing-page CSS -->
     <link href="vendor/css/landing-page.css" rel="stylesheet">
+    
+    <!-- Prism CSS -->
+    <link href="vendor/prism/prism.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -228,7 +231,9 @@
 
     <!-- jQuery UI Version 1.10.0 -->
     <script src="vendor/jquery/jquery-ui-1.10.4.custom.js"></script>
-
+    
+    <!-- Prism -->
+    <script src="vendor/prism/prism.js"></script>
 
 	  <script src="vendor/angular/angular.js"></script>
 	  <script src="vendor/angular/angular-resource.js"></script>

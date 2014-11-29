@@ -9,3 +9,9 @@
 div.note-panel-accordion .panel-heading {
 	cursor: pointer;
 }
+
+.pre-scrollable-x-y {
+	max-width: 550px;
+	max-height: 300px;
+	overflow: auto;
+}

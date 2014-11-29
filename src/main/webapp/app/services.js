@@ -5,8 +5,14 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('easyNoteApp.services', []).
-  value('version', '0.1')
+angular.module('easyNoteApp.services', [])
+  .value('version', '0.1')
+  .value('LANGUAGE', {
+	  CSS: 'css',
+	  JAVASCRIPT: 'javascript',
+	  JAVA: 'java',
+	  SQL: 'sql'
+  })
   .factory('addNoteModel', function() {
 	  var categories = [
 	                    {value:'JavaScript', label:'JavaScript', group:'Language'}, 

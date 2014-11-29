@@ -17,7 +17,8 @@ var c = function(msg) {
 myAppModule.
   controller('navigationControl', function($scope, navBreadCrumb) {
 	  $scope.itemList = navBreadCrumb.getAll();
-  });
+  })
+  ;
 
 
 myAppModule.  
@@ -65,9 +66,11 @@ myAppModule.
 		  var postData = $.param({subject: $scope.note.subject, content:$scope.note.content, type:$scope.note.category.join(), mainType: mainType});
   		  
 		  Notes.save(
-		  	{action:'save'},
-		    {subject: $scope.note.subject, content:$scope.note.content, type:$scope.note.category.join(), mainType: mainType},
-		    function(result) {angular.element($('#noteList')).scope().notes = Notes.query();}
+			  	{action:'save'},
+			    {subject: $scope.note.subject, content:$scope.note.content, type:$scope.note.category.join(), mainType: mainType},
+			    function(result) {
+			    	angular.element($('#noteList')).scope().notes = Notes.query();
+			    }
 		  	);
 	  };
 	  
@@ -83,7 +86,8 @@ myAppModule.
   .controller('noteListCtrl', function($scope, $http, $filter, $location, navBreadCrumb, Notes, addNoteModel) {
 //	  $scope.orderProp = 'id';
 	  
-	  $scope.notes = Notes.query();
+	  $scope.notes = Notes.query(function() { });
+	  
 	  
 	  $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
 	  });
@@ -142,8 +146,7 @@ myAppModule.
 			  return selectedMainType === mainType ? 'btn btn-success ' + fixedClass : 'btn btn-default ' + fixedClass;
 		  }
 		  else {
-			  return selectedMainType === mainType ? 'btn btn-success': 'btn btn-default';
-
+			  return selectedMainType === mainType ? 'btn btn-success' : 'btn btn-default';
 		  }
 	  };
 	  
