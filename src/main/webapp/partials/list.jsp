@@ -1,3 +1,31 @@
+<!--  
+<div transtest prop="{{'abcdefg'}}" ng-init="var1='outside directive'" ng-transclude >
+<h1>var1</h1>
+</div>
+
+<script type="text/ng-template" id="productTemplate">
+<td>{{item.name}}</td>
+<td><input ng-model='item.quantity' /></td>
+</script>
+
+<div class="panel panel-default" ng-controller="defaultCtrl1">
+	<div class="panel-body">
+		<table class="table table-striped" product-table="totalValue"
+			product-data="products" ng-transclude>
+			<tr>
+				<th>Name</th>
+				<th>Quantity</th>
+			</tr>
+			<tr ng-repeat="item in products" product-item></tr>
+			<tr>
+				<th>Total:</th>
+				<td>{{totalValue}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+-->
+
 <div ng-controller="appInfoCtrl" app-info style="text-align:center"></div>
 		
 <div class="panel-group" id="addNoteAccordion" ng-controller="addNoteCtrl">	
@@ -83,6 +111,15 @@
 					<option value="date">date</option>
 				</select>
 			</div>
+			
+			<div class="col-md-2 pull-right">
+				<div class="pull-left"><span class="btn"><strong>Bulk actions:</strong></span></div>
+				<div class="btn-group pull-right" role="group" aria-label="...">
+				  <button id="bulkMarkBtn" title="Mark/Unmark All" type="button" class="btn btn-default" ng-click="toggleRowSelection(undefined, undefined, true)">
+				  <span class="glyphicon glyphicon-pushpin"></span></button>
+<!-- 				  <button type="button" class="btn btn-default">Delete</button>
+ -->				</div>
+			</div>
 		</div>
 			
 	    <!--  End of filter section -->
@@ -97,29 +134,23 @@
 					<th style="width:10%">Type</th>
 					<th style="width:10%">Main Type</th>
 					<th style="width:10%">Timestamp</th>
-					<th style="width:250px">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-		      <tr data-ng-repeat="note in notes | orderBy:orderProp | filter:categoryFilterFn" ng-class="{selected: isSelected}"
-		      ng-mouseenter="isSelected=true" ng-mouseleave="isSelected=false" > 
+		      <tr data-ng-repeat="note in notes | orderBy:orderProp | filter:categoryFilterFn" ng-class="getRowStyle(note)"
+		      ng-mouseenter="toggleRowSelection(note, true, false)" ng-mouseleave="toggleRowSelection(note, false, false)" toolbar-hover note="note" delete-note="deleteNote(theNote)"> 
 		        <td>{{ note.id }}</td>
 		        <td>{{ note.subject }}</td>
  		        <td syntax-highlight content="{{note.content}}" language-type="{{note.type}}">
                 </td>
 		        <td>{{ note.type }}</td>
 		        <td>{{ note.mainType }}</td>
-		        <td>{{ note.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
 		        <td>
-		        	<button class="btn btn-danger btn-xs" ng-show="isSelected" ng-click="deleteNote(note)">delete</button>
-		        	<!--  
-		        	<a href="#/detail/{{note.id}}/{{note.subject}}/{{note.content}}/{{note.type}}" class="btn btn-danger btn-small" ng-show="isSelected">view</a>  
-		        	-->
-		        	<a ui-sref="detail({'noteId':note.id, 'subject':note.subject, 'content':note.content, 'type':note.type})" class="btn btn-danger btn-xs" ng-show="isSelected">view</a>  
-
+		        {{ note.date | date:'yyyy-MM-dd HH:mm:ss' }}
 		        </td>
 		      </tr>
 			</tbody>
 		</table>
 	  </div>
 	</div>
+

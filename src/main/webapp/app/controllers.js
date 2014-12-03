@@ -88,13 +88,39 @@ myAppModule.
 	  
 	  $scope.notes = Notes.query(function() { });
 	  
+	  $scope.getRowStyle = function(note) {
+		  var styleMap = {};
+		  if(note.isSelected) {
+			  styleMap['selected'] = true;
+		  }
+		  return styleMap;
+	  };
+	  
+	  $scope.toggleRowSelection = function(note, isSelected, isBulk) {
+		  if(isBulk) {
+			  angular.element('#bulkMarkBtn').toggleClass('btn-default').toggleClass('btn-warning');
+			  $scope.notes.isAllMarked = !$scope.notes.isAllMarked;
+			  angular.forEach($scope.notes, function(nt, key) {
+				  nt.isSelected = $scope.notes.isAllMarked;
+				  nt.isMarked = $scope.notes.isAllMarked;
+			  });
+		  }
+		  else {
+			  if(note.isMarked) {
+				  note.isSelected = true;
+			  }
+			  else {
+				  note.isSelected = isSelected;
+			  }
+		  }
+	  };
 	  
 	  $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
 	  });
 	  
 	  $scope.deleteNote = function(note) {
 		  note.$delete().then(function(){
-			  // do nothing at the moment;
+			  $scope.notes = Notes.query(function() { });
 		  });
 	  }; 
 	  
@@ -171,6 +197,7 @@ myAppModule.
 // detail view controllers
 myAppModule
 .controller('noteDetailControl', function($scope, $stateParams, $location, navBreadCrumb, addNoteModel, Notes){
+	console.log($stateParams);
 	Notes.get({id: $stateParams.noteId}, function(data) {
 		$scope.note = data;
 		navBreadCrumb.push({text: $scope.note.subject, isActive: true})
