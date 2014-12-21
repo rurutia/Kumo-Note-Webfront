@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 
 // Declare app level module which depends on filters, and services
-angular.module('easyNoteApp', ['ui.router','easyNoteApp.filters', 'easyNoteApp.services', 'easyNoteApp.directives', 'easyNoteApp.controllers','ngResource'])
+angular.module('kumoNoteApp', ['ui.router','kumoNoteApp.filters', 'kumoNoteApp.services', 'kumoNoteApp.directives', 'kumoNoteApp.controllers','ngResource'])
 .config(function($stateProvider, $urlRouterProvider) {
 //	http://stackoverflow.com/questions/20482051/how-to-set-a-default-state-with-angular-ui-router
 //	$urlRouterProvider.when('/list', '');

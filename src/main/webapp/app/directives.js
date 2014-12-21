@@ -3,7 +3,7 @@
 /* Directives */
 
 
-angular.module('easyNoteApp.directives', [])
+angular.module('kumoNoteApp.directives', [])
 .controller("defaultCtrl1", function ($scope) {
 	$scope.products = [{ name: "Apples", price: 1.20, quantity: 2 },
 	                   { name: "Bananas", price: 2.42, quantity: 3 },

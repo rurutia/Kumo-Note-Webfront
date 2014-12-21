@@ -8,7 +8,7 @@
 
 /* Controllers */
 
-var myAppModule = angular.module('easyNoteApp.controllers', []);
+var myAppModule = angular.module('kumoNoteApp.controllers', []);
 
 var c = function(msg) {
 	console.log(msg);
