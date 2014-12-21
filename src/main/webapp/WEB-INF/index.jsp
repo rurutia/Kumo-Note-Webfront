@@ -12,19 +12,19 @@
     <title>Kumo Note - powered by AngularJS</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
     <!-- jQuery UI CSS -->
-    <link href="vendor/css/jquery-ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/jquery/jquery-ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css" />
 
     <!-- Landing-page CSS -->
-    <link href="vendor/css/landing-page.css" rel="stylesheet">
+    <link href="assets/css/landing-page.css" rel="stylesheet">
     
     <!-- Prism CSS -->
-    <link href="vendor/prism/prism.css" rel="stylesheet">
+    <link href="assets/libs/prism/prism.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="vendor/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/libs/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
     
@@ -223,21 +223,21 @@
     </footer>
 
     <!-- jQuery Version 1.10.0 -->
-    <script src="vendor/jquery/jquery-1.10.2.min.js"></script>
+    <script src="assets/libs/jquery/jquery-1.10.2.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- jQuery UI Version 1.10.0 -->
-    <script src="vendor/jquery/jquery-ui-1.10.4.custom.js"></script>
+    <script src="assets/libs/jquery/jquery-ui-1.10.4.custom.js"></script>
     
     <!-- Prism -->
-    <script src="vendor/prism/prism.js"></script>
+    <script src="assets/libs/prism/prism.js"></script>
 
-	  <script src="vendor/angular/angular.js"></script>
-	  <script src="vendor/angular/angular-resource.js"></script>
-	  <script src="vendor/angular-modules/angular-ui-router.js"></script>
-	  <script src="app/app.js"></script>
+	  <script src="assets/libs/angular/angular.js"></script>
+	  <script src="assets/libs/angular/angular-resource.js"></script>
+	  <script src="assets/libs/angular-modules/angular-ui-router.js"></script>
+	  <script src="app/app.module.js"></script>
 	  <script src="app/services.js"></script>
 	  <script src="app/controllers.js"></script>
 	  <script src="app/filters.js"></script>

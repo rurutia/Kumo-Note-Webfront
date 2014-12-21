@@ -4,6 +4,24 @@ $(document).ready(function () {
 	$('a.navbar-brand').click(function (e) {
 		angular.element(currentDateTime).scope().$apply('addContent()');
 	});
+	
+	({
+		// here you can define setting values
+		// a.k.a. configuration constants
+		maxwidth: 600,
+		maxheight: 400,
+		// you can also define utility methods
+		gimmeMax: function () {
+		return this.maxwidth + "x" + this.maxheight;
+		},
+		// initialize
+		init: function () {
+		console.log(this.gimmeMax());
+		// more init tasks...
+		}
+	}).init();
+	
+	
 });
 
 
@@ -15,28 +33,22 @@ angular.module('easyNoteApp', ['ui.router','easyNoteApp.filters', 'easyNoteApp.s
     $urlRouterProvider.otherwise('/404');
 	$stateProvider.state('default', {
         url:'', 
-        templateUrl: 'partials/list.jsp'
+        templateUrl: 'app/components/list/list.jsp'
     });
 	$stateProvider.state('list', {
         url:'/list', 
-        templateUrl: 'partials/list.jsp'
+        templateUrl: 'app/components/list/list.jsp'
     });
 	$stateProvider.state('detail', {
         url:'/detail?noteId&subject&content&type', 
-        templateUrl: 'partials/detail.jsp'
+        templateUrl: 'app/components/detail/detail.jsp'
     });
 	$stateProvider.state('404', {
         url:'/404', 
-        templateUrl: 'partials/404.jsp'
+        templateUrl: 'app/shared/404.jsp'
     });
 
 })
-
-//.config(['$routeProvider', function($routeProvider) {
-//    $routeProvider.when('/list', {templateUrl: 'partials/list.jsp'});
-//    $routeProvider.when('/detail/:noteId/:subject/:content/:type', {templateUrl: 'partials/detail.jsp', controller: 'noteDetailControl'});
-//    $routeProvider.otherwise({redirectTo: '/list'});
-//  }])
   .factory('Notes', function($resource){
 	  return $resource(
 			  '/kumo-note-restapi/notes/:action/:id',
