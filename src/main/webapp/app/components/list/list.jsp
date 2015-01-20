@@ -125,7 +125,7 @@
 	    <!--  End of filter section -->
 		
 	  	<!--  Start of list -->
-		<table class="table">
+		<table class="table" id="record-list">
 			<thead>
 				<tr>
 					<th style="width:5%">#</th>
@@ -137,15 +137,15 @@
 				</tr>
 			</thead>
 			<tbody>
-		      <tr data-ng-repeat="note in notes | orderBy:orderProp | filter:categoryFilterFn" ng-class="getRowStyle(note)"
+		      <tr id="{{note.id}}" index="{{$index}}" data-ng-repeat="note in notes  | filter:categoryFilterFn" ng-class="getRowStyle(note)"
 		      ng-mouseenter="toggleRowSelection(note, true, false)" ng-mouseleave="toggleRowSelection(note, false, false)" toolbar-hover note="note" delete-note="deleteNote(theNote)"> 
-		        <td>{{ note.id }}</td>
-		        <td>{{ note.subject }}</td>
- 		        <td syntax-highlight content="{{note.content}}" language-type="{{note.type}}">
+		        <td style="width:5%" class="draggable">{{ note.id }}</td>
+		        <td style="width:15%" class="draggable">{{ note.subject }}</td>
+ 		        <td class="draggable" syntax-highlight content="{{note.content}}" language-type="{{note.type}}">
                 </td>
-		        <td>{{ note.type }}</td>
-		        <td>{{ note.mainType }}</td>
-		        <td>
+		        <td style="width:10%" class="draggable">{{ note.type }}</td>
+		        <td style="width:10%" class="draggable">{{ note.mainType }}</td>
+		        <td style="width:10%" class="draggable">
 		        {{ note.date | date:'yyyy-MM-dd HH:mm:ss' }}
 		        </td>
 		      </tr>

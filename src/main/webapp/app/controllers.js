@@ -83,10 +83,12 @@ myAppModule.
 		  collapsable.collapse('toggle');
 	  });
   })
-  .controller('noteListCtrl', function($scope, $http, $filter, $location, navBreadCrumb, Notes, addNoteModel) {
+  .controller('noteListCtrl', function($scope, $rootScope, $http, $filter, $location, navBreadCrumb, Notes, addNoteModel, $timeout) {
 //	  $scope.orderProp = 'id';
 	  
-	  $scope.notes = Notes.query(function() { });
+	  $scope.notes = Notes.query(function() {
+//		  console.log($scope.notes[0].id);
+	  });
 	  
 	  $scope.getRowStyle = function(note) {
 		  var styleMap = {};
@@ -117,6 +119,23 @@ myAppModule.
 	  
 	  $scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
 	  });
+
+	  $rootScope.$on('RecordDragEvent', function(event, msg) {
+		  // update record order in record-list table based on indexes in msg
+		  if(typeof(msg.newIndex) === 'undefined') {
+			  return;
+		  }
+		  
+		  var temp = [];
+		  angular.copy($scope.notes, temp);
+		  
+		  var currentNote = temp.splice(msg.currentIndex, 1);
+		  
+		  temp.splice(msg.newIndex, 0, currentNote[0]);
+
+		  $scope.notes = temp;
+	  });
+	  
 	  
 	  $scope.deleteNote = function(note) {
 		  note.$delete().then(function(){

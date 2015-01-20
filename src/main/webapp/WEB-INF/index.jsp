@@ -242,6 +242,8 @@
 	  <script src="app/controllers.js"></script>
 	  <script src="app/filters.js"></script>
 	  <script src="app/directives.js"></script>
+	  <script src="app/components/toolbar/toolbar.js"></script>
+	  <script src="app/components/list/draggable-table-row.js"></script>
 
 </body>
 

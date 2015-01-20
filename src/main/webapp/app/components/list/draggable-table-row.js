@@ -1,4 +1,8 @@
+// Draggable table row
+
 $(document).ready(function () {
+	
+	// utility functions, can be replaced by jquery
 	function mouseCoords(ev){
 		if(ev.pageX || ev.pageY){
 			return {x:ev.pageX, y:ev.pageY};
@@ -8,6 +12,7 @@ $(document).ready(function () {
 			y:ev.clientY + document.body.scrollTop  - document.body.clientTop
 		};
 	}
+	
 	function getPosition(e){
 		var left = 0;
 		var top  = 0;
@@ -20,6 +25,7 @@ $(document).ready(function () {
 		top  += e.offsetTop;
 		return {x:left, y:top};
 	}
+	
 	function getMouseOffset(target, ev){
 		ev = ev || window.event;
 		var docPos    = getPosition(target);
@@ -35,33 +41,34 @@ $(document).ready(function () {
 	    draggableRows = [],
 	    lastMouseY,
 	    moveDirection,	
-		prevIndex, nextIndex, currentIndex,
-		newIndex,
+		currentIndex, newIndex,
+		// message passed to drag event handler
 	    msg;
 	
+	// dragHelper represents the row being dragged
 	var dragHelper = $('<div></div>').css({position: 'absolute', 'border-width': '3px', 'border-color': 'red', 'border-style' : 'solid'});
 
 	$('body').append(dragHelper);
 
 	document.onmousedown = function(ev) {
-		// only drag when left mouse is clicked
-		if(ev.which == 1 && $(ev.target).is('td')) {
+		// only drag when left mouse is clicked and the target must be td
+		if(ev.which == 1 && $(ev.target).is('.draggable')) {
 			isMouseDown = true;
 		}
 	};
 	
 	document.onmouseup= function(ev) {
+		// trigger UI change by broadcasting AngularUI event
 		if(isMouseDown) {
 				var scope = angular.element(document).scope();
-				scope.$apply(scope.$broadcast('MyDragEvent', msg));
+				scope.$apply(scope.$broadcast('RecordDragEvent', msg));
 		}
 		
-		
+		// reset variables and UI
 		isMouseDown = false;
 		curTarget = null;
 		dragHelper.css('display', 'none');
 		draggableRows = [];
-		prevIndex = nextIndex = currentIndex= null;
 		newIndex = undefined;
 		msg = null;
 		$('.remove').remove();
@@ -72,22 +79,25 @@ $(document).ready(function () {
 		
 		if(isMouseDown && !isMouseStateSet) {
 			curTarget = ev.target;
-			dragHelper.empty().get(0).appendChild(curTarget.parentNode.cloneNode(true));
-			dragHelper.css('display', 'block');
-			dragHelper.width(curTarget.parentNode.offsetWidth);
-			mouseOffset = getMouseOffset(curTarget.parentNode, ev);
-			curTargetParentPos = getPosition(curTarget.parentNode); 
+			
+			var trNode = curTarget.parentNode;
+			
+			// put current row into dragHelper DIV
+			dragHelper
+				.empty()
+				.append($(trNode).clone())
+				.css('display', 'block')
+				.width(trNode.offsetWidth);
+			
+			mouseOffset = getMouseOffset(trNode, ev);
+			curTargetParentPos = getPosition(trNode); 
 			
 			$('table#record-list tbody>tr').each(function(i) {
-				// do not add target row itself to array for checking positions after
-//				if(this != curTarget.parentNode) {
-					draggableRows.push(this);
-//				}
+				draggableRows.push(this);
 			});
 		}
+		
 		if(curTarget) {
-//			console.log("prevY:" + lastMouseY);
-//			console.log("cY:" + mousePos.y);
 			if(lastMouseY) {
 				if(mousePos.y < lastMouseY) {
 					moveDirection = 'up';
@@ -96,7 +106,7 @@ $(document).ready(function () {
 					moveDirection = 'down';
 				}
 			}
-//			console.log(moveDirection);
+
 			dragHelperPos = { left: curTargetParentPos.x, top: mousePos.y - mouseOffset.y };
 			dragHelper.offset(dragHelperPos);
 			
@@ -104,7 +114,6 @@ $(document).ready(function () {
 			dragHelperBottomLeftPos = { left: curTargetParentPos.x, top: mousePos.y - mouseOffset.y + curTarget.offsetHeight };
 			
 			if(moveDirection === 'up') {
-
 				for(var i=0;i<draggableRows.length;i++) {
 					var rowPos = getPosition(draggableRows[i]);
 					var rowHeight = draggableRows[i].offsetHeight;
@@ -122,22 +131,15 @@ $(document).ready(function () {
 					var rowHeight = draggableRows[i].offsetHeight;
 					
 					if(dragHelperBottomLeftPos.top > rowPos.y + rowHeight) {
-						console.log("inside donw............");
 						newIndex = i;
-						console.log(dragHelperBottomLeftPos.top);
-						console.log(newIndex);
-
 						break;
 					}
 				}				
 			}
 
 			if(typeof newIndex !== 'undefined' && newIndex != $(curTarget.parentNode).attr('index')) {
-				console.log("------------");
-				console.log(newIndex);
-				console.log( $(curTarget.parentNode).attr('index'))
 				$('.remove').remove();
-				var placeHolderDiv = $('<div class="remove"></div>').css({'border-width': '5px', 'border-color': 'red', 'border-style' : 'dashed'});
+				var placeHolderDiv = $('<div class="remove"></div>').css({'border-width': '5px', 'background-color': '#eee', 'border-color': 'red', 'border-style' : 'dashed'});
 			    var placeHolderTr = $('<tr class="remove"></tr>');
 			    var placeHolderTd = $('<td class="remove" colspan="6"></td>');
 			    placeHolderTr.append(placeHolderTd.append(placeHolderDiv));
@@ -154,21 +156,14 @@ $(document).ready(function () {
 				newIndex = undefined;
 			}
 			
-			
-//			console.log(newIndex);
-			
-			lastMouseY =  mousePos.y ;
+			lastMouseY = mousePos.y ;
 			
 			msg = {newIndex: newIndex, currentIndex: parseInt($(curTarget.parentNode).attr('index'))};
-//			msg = {prevIndex: prevIndex, nextIndex: nextIndex, currentIndex: parseInt($(curTarget.parentNode).attr('index'))};
-//			var scope = angular.element(document).scope();
-//			scope.$apply(scope.$broadcast('MyDragEvent', {prevIndex: prevIndex, nextIndex: nextIndex, currentIndex: parseInt($(curTarget.parentNode).attr('index'))}));
-//			
-			
 		}
 		
 		isMouseStateSet = isMouseDown;
 		
+		// must have return false here to prevent the default action (i.e. select all elements)
 		return false;
 	};
 	
