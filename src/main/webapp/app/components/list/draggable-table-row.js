@@ -159,12 +159,15 @@ $(document).ready(function () {
 			lastMouseY = mousePos.y ;
 			
 			msg = {newIndex: newIndex, currentIndex: parseInt($(curTarget.parentNode).attr('index'))};
+
 		}
 		
 		isMouseStateSet = isMouseDown;
 		
-		// must have return false here to prevent the default action (i.e. select all elements)
-		return false;
+		if(isMouseDown) {
+			// must have return false here to prevent the default action (i.e. select all elements)
+			return false;
+		}
 	};
 	
 	

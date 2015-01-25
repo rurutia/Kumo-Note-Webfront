@@ -141,7 +141,7 @@
 		      ng-mouseenter="toggleRowSelection(note, true, false)" ng-mouseleave="toggleRowSelection(note, false, false)" toolbar-hover note="note" delete-note="deleteNote(theNote)"> 
 		        <td style="width:5%" class="draggable">{{ note.id }}</td>
 		        <td style="width:15%" class="draggable">{{ note.subject }}</td>
- 		        <td class="draggable" syntax-highlight content="{{note.content}}" language-type="{{note.type}}">
+ 		        <td syntax-highlight content="{{note.content}}" language-type="{{note.type}}">
                 </td>
 		        <td style="width:10%" class="draggable">{{ note.type }}</td>
 		        <td style="width:10%" class="draggable">{{ note.mainType }}</td>
