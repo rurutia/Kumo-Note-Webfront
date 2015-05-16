@@ -76,7 +76,7 @@
 
 	
 	<div class="panel panel-primary" id="noteList" style="margin-top:20px" ng-controller="noteListCtrl">
-	  <div class="panel-heading">Notes List</div>
+	  <div class="panel-heading">Notes List {{testonly}}</div>
 	  <div class="panel-body">
 	    
 	    <!-- Filter info -->
@@ -137,9 +137,12 @@
 				</tr>
 			</thead>
 			<tbody>
-		      <tr id="{{note.id}}" index="{{$index}}" data-ng-repeat="note in notes  | filter:categoryFilterFn" ng-class="getRowStyle(note)"
+		      <tr id="{{note.id}}" index="{{$index}}" on-finish-render data-ng-repeat="note in notes  | filter:categoryFilterFn" ng-class="getRowStyle(note)"
 		      ng-mouseenter="toggleRowSelection(note, true, false)" ng-mouseleave="toggleRowSelection(note, false, false)" toolbar-hover note="note" delete-note="deleteNote(theNote)"> 
-		        <td style="width:5%" class="draggable">{{ note.id }}</td>
+		        <td style="width:5%" class="draggable">
+		        	{{ $index + 1 }} 
+		        	<a href="#" ng-mouseover="showDebugInfo(note.id)" data-toggle="tooltip"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+		        </td>
 		        <td style="width:15%" class="draggable">{{ note.subject }}</td>
  		        <td syntax-highlight content="{{note.content}}" language-type="{{note.type}}">
                 </td>

@@ -1,13 +1,5 @@
 'use strict';
 
-/* models */
-
-//var dateTime = {
-//	isRefresh: true	
-//};
-
-/* Controllers */
-
 var myAppModule = angular.module('kumoNoteApp.controllers', []);
 
 var c = function(msg) {
@@ -21,8 +13,33 @@ myAppModule.
   ;
 
 
-myAppModule.  
-	controller('currentDateTimeCtrl', function($scope, $interval) {
+myAppModule
+.value('testonly1', {abc:'testonly1234111'})
+
+.factory('testonly', function(testonly1) {
+	return testonly1;
+})
+.directive('dateTimer', function ($interval, $filter) {
+      return {
+          restrict: 'AE',
+          template: '<span>{{currentDateTime}}</span><input type="checkbox" id="ch" ng-model="isRefresh" />',
+          controller: function ($scope) {
+        	  $scope.isRefresh = true;
+				var intervalPromise;
+				$scope.$watch('isRefresh', function(newValue) {
+					if(newValue) {
+					    intervalPromise = $interval(function() {
+							$scope.currentDateTime = $filter('date')(new Date(), "dd/MMM/yyyy hh:mm:ss"); 
+						    }, 1000);
+					}
+				    else {
+						$interval.cancel(intervalPromise);
+					}
+				});
+          },
+      };
+  })
+.controller('currentDateTimeCtrl', function($scope, $interval) {
 		$scope.isRefresh = true;
 		var intervalPromise;
 		$scope.$watch('isRefresh', function(newValue) {
@@ -83,8 +100,27 @@ myAppModule.
 		  collapsable.collapse('toggle');
 	  });
   })
-  .controller('noteListCtrl', function($scope, $rootScope, $http, $filter, $location, navBreadCrumb, Notes, addNoteModel, $timeout) {
+  .controller('noteListCtrl', function($scope, $rootScope, $http, $filter, $location, navBreadCrumb, Notes, addNoteModel, $timeout, testonly) {
+
+	  $scope.testonly = testonly.abc;
 //	  $scope.orderProp = 'id';
+//	  $rootScope.$on('$viewContentLoaded', function (event) {
+////          alert('lock & loaded')
+//  });
+
+//      $scope.$on('ngRepeatFinished', function(event) {
+//    	  $('[data-toggle="tooltip"]').tooltip({title:'dddddd'});
+//    	 console.log(33333); 
+//      });
+//  
+//	  $scope.showDebugInfo = function(nodeId) {
+//	    	 console.log(44444); 
+//
+//		  $('[data-toggle="tooltip"]').tooltip({
+//			  title: 'id:' + nodeId,
+//			  placement: 'top'
+//		  });
+//	  };
 	  
 	  $scope.notes = Notes.query(function() {
 //		  console.log($scope.notes[0].id);

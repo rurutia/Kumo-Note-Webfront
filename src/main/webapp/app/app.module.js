@@ -22,11 +22,13 @@ $(document).ready(function () {
 	}).init();
 	
 	
+	
 });
 
 
 // Declare app level module which depends on filters, and services
-angular.module('kumoNoteApp', ['ui.router','kumoNoteApp.filters', 'kumoNoteApp.services', 'kumoNoteApp.directives', 'kumoNoteApp.controllers','ngResource'])
+angular.module('kumoNoteApp', ['ui.router','extra','kumoNoteApp.filters', 'kumoNoteApp.services', 'kumoNoteApp.directives', 'kumoNoteApp.controllers','calculator','ngResource'])
+
 .config(function($stateProvider, $urlRouterProvider) {
 //	http://stackoverflow.com/questions/20482051/how-to-set-a-default-state-with-angular-ui-router
 //	$urlRouterProvider.when('/list', '');
@@ -42,6 +44,10 @@ angular.module('kumoNoteApp', ['ui.router','kumoNoteApp.filters', 'kumoNoteApp.s
 	$stateProvider.state('detail', {
         url:'/detail?noteId&subject&content&type', 
         templateUrl: 'app/components/detail/detail.jsp'
+    });
+	$stateProvider.state('calculator', {
+        url:'/calculator?mode', 
+        templateUrl: 'app/components/tools/calculator.jsp'
     });
 	$stateProvider.state('404', {
         url:'/404', 

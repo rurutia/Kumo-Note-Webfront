@@ -1,5 +1,42 @@
-angular.module('directive.toolbar', [])
-.directive('toolbarHover', function($state) {
+//function abc() {
+//	var private1 = function(name) {
+//		return name.split('').reverse().join('');
+//	};
+//	this.showName = function(name) {
+//		return private1(name);
+//	};
+//};
+
+angular.module('directive.toolbar', ['extra2'])
+.service('abc', function() {
+	var private1 = function(name) {
+		return name.split('').reverse().join('');
+	};
+	this.showName = function(name) {
+		return private1(name);
+	};
+})
+.factory('bar', function() {
+	var private1 = function(name) {
+		return name.split('').reverse().join('');
+	};
+
+//	return function(name) {
+//		this.name = name;
+//		this.showName = function(name) {
+//			return private1(this.name + name);
+//		};
+//	};
+	
+	return {
+		showName :function(name) {
+			return private1( name);
+		}
+	}
+})
+
+.directive('toolbarHover', function($state, testonly1, helloWorldFromService, bar) {
+	console.log(bar.showName('michaelca'));
 	  return {
 		  restrict: 'A',
 		  scope: {

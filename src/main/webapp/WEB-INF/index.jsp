@@ -14,9 +14,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- jQuery UI CSS -->
-    <link href="assets/libs/jquery/jquery-ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css" />
-
+    <!-- jQuery UI CSS // commented out to use bootstrap css and js -->
+<!--     <link href="assets/libs/jquery/jquery-ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet" type="text/css" />
+ -->
     <!-- Landing-page CSS -->
     <link href="assets/css/landing-page.css" rel="stylesheet">
     
@@ -58,15 +58,16 @@
                 <a class="navbar-brand" href="#">Kumo Note</a>
             </div>
 
-		    <!-- Current Date Time -->
-            <div class="navbar-header navbar-text" ng-controller="currentDateTimeCtrl">
-                <span id="currentDateTime">{{currentDateTime | date:"dd/MMM/yyyy hh:mm:ss"}}</span>
-			    <input type="checkbox" ng-model="isRefresh" />
-            </div>     
+            <div class="navbar-header navbar-text" ng-cloak>
+                <date-timer />
+            </div>   
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a ui-sref="calculator">Calculator</a>
+                    </li>
                     <li>
                         <a href="#">About</a>
                     </li>
@@ -111,15 +112,14 @@
     <!-- Page Content -->
      <div class="content-section-a">
 
-		<div class="container">
+		<div class="container" ng-cloak>
 		
 			<ol class="breadcrumb" ng-controller="navigationControl">
 			  <li ng-repeat="item in itemList" ng-class="{'active': item.isActive}">
-				<span ng-if="item.isActive">{{item.text}}</span>  
+				<span ng-if="item.isActive" ng-cloak>{{item.text}}</span>  
  			  	<a ng-if="!item.isActive" ui-sref="{{item.link}}">{{item.text}}</a>
  			  </li>
 			</ol>
-		
 			<!-- HERE WILL BE LOADED AN AJAX CONTENT -->
 			<ui-view ng-cloak></ui-view>
 		</div>
@@ -205,7 +205,7 @@
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
-                            <a href="#about">About</a>
+                            <a hstyle="margin-top:5px"ref="#about">About</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
@@ -228,9 +228,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- jQuery UI Version 1.10.0 -->
-    <script src="assets/libs/jquery/jquery-ui-1.10.4.custom.js"></script>
-    
+    <!-- jQuery UI Version 1.10.0   // commented out to use bootstrap css and js -->
+<!--     <script src="assets/libs/jquery/jquery-ui-1.10.4.custom.js"></script>
+ -->    
     <!-- Prism -->
     <script src="assets/libs/prism/prism.js"></script>
 
@@ -244,6 +244,14 @@
 	  <script src="app/directives.js"></script>
 	  <script src="app/components/toolbar/toolbar.js"></script>
 	  <script src="app/components/list/draggable-table-row.js"></script>
+	  <script src="app/components/tools/calculator.js"></script>
+	  
+	  <script src="app/components/list/language.js"></script>
+	  	  <script src="app/components/list/extra.js"></script>
+	  	  	  	  <script src="app/components/list/extra2.js"></script>
+	  	  
+	  
+	  
 
 </body>
 

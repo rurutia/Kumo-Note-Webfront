@@ -3,7 +3,7 @@
 /* Directives */
 
 
-angular.module('kumoNoteApp.directives', ['directive.toolbar'])
+angular.module('kumoNoteApp.directives', ['kumoNoteApp.language', 'directive.toolbar'])
 .controller("defaultCtrl1", function ($scope) {
 	$scope.products = [{ name: "Apples", price: 1.20, quantity: 2 },
 	                   { name: "Bananas", price: 2.42, quantity: 3 },
@@ -78,6 +78,25 @@ angular.module('kumoNoteApp.directives', ['directive.toolbar'])
 
 		  }
 	  }
+  })
+  .directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+  		  $('[data-toggle="tooltip"]').tooltip({
+			  title: 'id:' + attr['id'],
+			  placement: 'top'
+		  });
+//  		  console.log(element);
+//  		  console.log(attr);
+//  		  console.log('------');
+//            if (scope.$last === true) {
+//                $timeout(function () {
+//                    scope.$emit('ngRepeatFinished');
+//                });
+//            }
+        }
+     }
   })
   .directive('highlight', function() {
 	  return {

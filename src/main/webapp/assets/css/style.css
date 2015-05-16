@@ -48,3 +48,8 @@ div.note-panel-accordion .panel-heading {
 	line-height:1.3;
 	vertical-align: middle;
 }
+
+/* taobao calculator */
+#calculator-table input {
+  width: 40px;
+}
