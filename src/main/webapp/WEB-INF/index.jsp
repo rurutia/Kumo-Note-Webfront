@@ -201,32 +201,6 @@
     <!-- /.banner -->
 
     <!-- Footer -->
-<!--     <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#home">Home</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a hstyle="margin-top:5px"ref="#about">About</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#services">Services</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="#contact">Contact</a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted small">Copyright &copy; Michael Yu 2014. All Rights Reserved</p>
-                </div>
-            </div>
-        </div>
-    </footer> -->
     <footer class="white navbar-fixed-bottom">
       Copyright © Michael Yu 2015. All Rights Reserved
     </footer>

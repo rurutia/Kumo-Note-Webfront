@@ -35,8 +35,7 @@ angular.module('directive.toolbar', ['extra2'])
 	}
 })
 
-.directive('toolbarHover', function($state, testonly1, helloWorldFromService, bar) {
-	console.log(bar.showName('michaelca'));
+.directive('toolbarHover', function($state, helloWorldFromService, bar) {
 	  return {
 		  restrict: 'A',
 		  scope: {
