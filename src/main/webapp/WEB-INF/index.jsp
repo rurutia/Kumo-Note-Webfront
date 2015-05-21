@@ -75,9 +75,15 @@
                         <a href="#">Services</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+						role="button" aria-expanded="false">User <span
+						class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Profile</a></li>
+							<li><a href="j_spring_security_logout">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -195,7 +201,7 @@
     <!-- /.banner -->
 
     <!-- Footer -->
-    <footer>
+<!--     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -220,6 +226,9 @@
                 </div>
             </div>
         </div>
+    </footer> -->
+    <footer class="white navbar-fixed-bottom">
+      Copyright © Michael Yu 2015. All Rights Reserved
     </footer>
 
     <!-- jQuery Version 1.10.0 -->

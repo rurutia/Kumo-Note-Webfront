@@ -76,7 +76,7 @@
 
 	
 	<div class="panel panel-primary" id="noteList" style="margin-top:20px" ng-controller="noteListCtrl">
-	  <div class="panel-heading">Notes List {{testonly}}</div>
+	  <div class="panel-heading">Notes List</div>
 	  <div class="panel-body">
 	    
 	    <!-- Filter info -->

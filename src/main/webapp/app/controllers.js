@@ -14,11 +14,6 @@ myAppModule.
 
 
 myAppModule
-.value('testonly1', {abc:'testonly1234111'})
-
-.factory('testonly', function(testonly1) {
-	return testonly1;
-})
 .directive('dateTimer', function ($interval, $filter) {
       return {
           restrict: 'AE',
@@ -100,9 +95,7 @@ myAppModule
 		  collapsable.collapse('toggle');
 	  });
   })
-  .controller('noteListCtrl', function($scope, $rootScope, $http, $filter, $location, navBreadCrumb, Notes, addNoteModel, $timeout, testonly) {
-
-	  $scope.testonly = testonly.abc;
+  .controller('noteListCtrl', function($scope, $rootScope, $http, $filter, $location, navBreadCrumb, Notes, addNoteModel, $timeout) {
 //	  $scope.orderProp = 'id';
 //	  $rootScope.$on('$viewContentLoaded', function (event) {
 ////          alert('lock & loaded')
