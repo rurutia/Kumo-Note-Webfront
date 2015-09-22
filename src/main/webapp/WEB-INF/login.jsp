@@ -2,7 +2,7 @@
 <head>
 <title>Login Page</title>
 <link href="assets/css/login.css" rel="stylesheet" type="text/css" />
-<link href="assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="Content/bootstrap.css" rel="stylesheet" />
 
 </head>
 <body style="background: #eee">

@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>angular-note</groupId>
-  <artifactId>angular-note</artifactId>
+  <groupId>kumo-note</groupId>
+  <artifactId>kumo-note-ui</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>angular-note</name>
+  <name>kumo-note-ui</name>
   <url>http://maven.apache.org</url>
   
   <properties>
@@ -93,7 +93,7 @@
     
   </dependencies>
   <build>
-    <finalName>angular-note</finalName>
+    <finalName>kumo-note-ui</finalName>
    	<plugins>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
