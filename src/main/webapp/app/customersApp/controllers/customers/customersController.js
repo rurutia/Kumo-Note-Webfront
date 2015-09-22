@@ -10,8 +10,8 @@ define(['app'], function (app) {
 
         var vm = this;
 
-        vm.customers = [];
-        vm.filteredCustomers = [];
+        vm.records = [];
+        vm.filteredRecords = [];
         vm.filteredCount = 0;
         vm.orderby = 'lastName';
         vm.reverse = false;
@@ -47,13 +47,13 @@ define(['app'], function (app) {
             modalService.showModal({}, modalOptions).then(function (result) {
                 if (result === 'ok') {
                     dataService.deleteCustomer(id).then(function () {
-                        for (var i = 0; i < vm.customers.length; i++) {
-                            if (vm.customers[i].id === id) {
-                                vm.customers.splice(i, 1);
+                        for (var i = 0; i < vm.records.length; i++) {
+                            if (vm.records[i].id === id) {
+                                vm.records.splice(i, 1);
                                 break;
                             }
                         }
-                        filterCustomers(vm.searchText);
+                        filterRecords(vm.searchText);
                     }, function (error) {
                         $window.alert('Error deleting customer: ' + error.message);
                     });
@@ -89,7 +89,7 @@ define(['app'], function (app) {
         };
 
         vm.searchTextChanged = function () {
-            filterCustomers(vm.searchText);
+            filterRecords(vm.searchText);
         };
 
         function init() {
@@ -104,7 +104,7 @@ define(['app'], function (app) {
 
         //    //Better to handle this using ng-change on <input>. See searchTextChanged() function.
         //    vm.$watch("searchText", function (filterText) {
-        //        filterCustomers(filterText);
+        //        filterRecords(filterText);
         //    });
         //}
 
@@ -114,8 +114,8 @@ define(['app'], function (app) {
             dataService.getNotes(vm.currentPage - 1, vm.pageSize)
             .then(function (data) {
                 vm.totalRecords = data.totalRecords;
-                vm.customers = data.results;
-                filterCustomers(''); //Trigger initial filter
+                vm.records = data.results;
+                filterRecords(''); //Trigger initial filter
 
                 $timeout(function () {
                     vm.cardAnimationClass = ''; //Turn off animation since it won't keep up with filtering
@@ -126,14 +126,14 @@ define(['app'], function (app) {
             });
         }
 
-        function filterCustomers(filterText) {
-            vm.filteredCustomers = $filter("nameCityStateFilter")(vm.customers, filterText);
-            vm.filteredCount = vm.filteredCustomers.length;
+        function filterRecords(filterText) {
+            vm.filteredRecords = $filter("nameCityStateFilter")(vm.records, filterText);
+            vm.filteredCount = vm.filteredRecords.length;
         }
 
         function getCustomerById(id) {
-            for (var i = 0; i < vm.customers.length; i++) {
-                var cust = vm.customers[i];
+            for (var i = 0; i < vm.records.length; i++) {
+                var cust = vm.records[i];
                 if (cust.id === id) {
                     return cust;
                 }

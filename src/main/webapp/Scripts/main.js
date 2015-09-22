@@ -1,6 +1,7 @@
 ﻿require.config({
     baseUrl: 'app',
-    urlArgs: 'v=1.0'
+//    urlArgs: 'v=1.0'
+    urlArgs: 'bust=' + (new Date()).getTime() 
 });
 
 require(
@@ -18,6 +19,7 @@ require(
         'customersApp/services/httpInterceptors',
         'customersApp/filters/nameCityStateFilter',
         'customersApp/filters/nameProductFilter',
+        'customersApp/filters/textTruncationFilter',
         'customersApp/controllers/navbarController',
         'customersApp/controllers/orders/orderChildController',
         'kumonoteApp/controllers/historyController',

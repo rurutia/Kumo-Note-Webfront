@@ -1,7 +1,7 @@
 <div class="customers view indent">
     <div class="container">
         <header>
-            <h3><span class="glyphicon glyphicon-user"></span> Customers</h3>
+            <h3><span class="glyphicon glyphicon-list-alt"></span> Notes</h3>
         </header>
         <div class="row">
             <div class="col-md-10">
@@ -19,7 +19,7 @@
                         </li>
                         <li class="toolbaritem">
                             <a data-ng-click="vm.navigate('/customeredit/0')">
-                                <span class="glyphicon glyphicon-plus"></span> Add Customer
+                                <span class="glyphicon glyphicon-plus"></span> Add Note
                             </a>
                         </li>
                     </ul>
@@ -39,27 +39,19 @@
         </div>
         <h1>{{vm.listDisplayModeEnabled}}</h1>
         <div class="container">
-            <div class="row cardContainer show-hide-animation" data-ng-hide="vm.listDisplayModeEnabled">
+            <div class="row  show-hide-animation" data-ng-hide="vm.listDisplayModeEnabled">
                 <div class="col-sm-6 col-md-4 col-lg-3" data-ng-class="vm.cardAnimationClass"
-                     data-ng-repeat="customer in vm.filteredCustomers | orderBy:'lastName'">
+                     data-ng-repeat="record in vm.filteredRecords | orderBy:'lastName'">
                     <div class="card">
                         <button class="btn close cardClose" title="Delete Customer" data-ng-click="vm.deleteCustomer(customer.id)">&times;</button>
-                        <div class="cardHeader"><a href="#/customeredit/{{customer.id}}" class="white">{{customer.type + ' ' + customer.lastName}} <i class="icon-edit icon-white editIcon"></i></a></div>
+                        <div class="cardHeader"><a href="#/customeredit/{{customer.id}}" class="white">{{record.subject}} <i class="icon-edit icon-white editIcon"></i></a></div>
                         <div class="cardBody">
                             <div class="clearfix">
                                 <div class="pull-left cardBodyLeft">
-                                    <a href="#/customeredit/{{customer.id}}" class="white"><img data-ng-src="Content/images/{{customer.gender | lowercase}}.png" class="cardImage" /></a>
+                                        <div class="type-icon white">{{record.type}}</div>
                                 </div>
                                 <div class="pull-left cardBodyRight">
-                                    <div class="cardBodyContent">{{customer.city}}, {{customer.state.name}}</div>
-                                    <div>
-                                        <a href="#/customerorders/{{customer.id}}" class="btn-link">
-                                            {{ customer.orderCount }}
-                                            <span data-ng-pluralize count="customer.orderCount"
-                                                  when="{'1': 'Order','other': 'Orders'}">
-                                            </span>
-                                        </a>
-                                    </div>
+                                    <div class="cardBodyContent">{{record.content | textTruncationFilter: 70}}</div>
                                 </div>
                             </div>
                         </div>

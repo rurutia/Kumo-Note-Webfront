@@ -11,8 +11,7 @@ define(['app'], function (app) {
         factory.getNotes = function() {
             var resource = '/kumo-note/notes/load';
             return $http.get(resource).then(function (response) {
-                                console.log("response......................");
-
+                console.log("response......................");
                 console.log(response);
                 return {
                 	results: response.data,

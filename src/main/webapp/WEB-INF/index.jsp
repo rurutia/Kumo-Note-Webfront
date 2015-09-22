@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer Manager</title>
+    <title>Kumo Note</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="Content/bootstrap.css" rel="stylesheet" />
@@ -20,7 +20,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#/">
-                    <img src="Content/images/people.png" alt="logo">
+                    <img src="Content/images/logo.png" width="48" height="48" alt="logo">
                     <span class="appTitle">{{ vm.appTitle }}</span>
                 </a>
             </div>
@@ -29,8 +29,8 @@
                 <!-- With menu-highlighter directive -->
                  <ul class="nav navbar-nav nav-pills navBarPadding"
                     data-menu-highlighter data-highlight-class-name="active">
-                    <li><a href="#/customers">Customers</a></li>
-                    <li><a href="#/orders">Orders</a></li>
+                    <li><a href="#/customers">Notes</a></li>
+                    <li><a href="#/orders">Todo</a></li>
                     <li><a href="#/about">About</a></li>
                     <li id="nav-login" data-ng-click="vm.loginOrOut()">
                         <!-- href not used but needed to compare against path in menu-highlighter -->
@@ -65,7 +65,7 @@
                     <footer>
                         <div class="row">
                             <div class="col-md-12">
-                                Created by <a href="http://twitter.com/DanWahlin" target="_blank">Dan Wahlin</a>
+                                Created by <a href="http://tc1027.metawerx.com.au/webpaint" target="_blank">Michael Yu</a>
                             </div>
                         </div>
                     </footer>
