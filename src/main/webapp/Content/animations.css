@@ -24,14 +24,12 @@
 .slide-animation.ng-enter.ng-enter-active {
   left:0;
   opacity:1;
-  border: 20px solid red;
 }
 
 .slide-animation.ng-leave {
-  z-index:1010;
+  z-index:101;
   opacity:1;
   left:0;
-  border: 20px solid blue;
 }
 
 .slide-animation.ng-leave.ng-leave-active {

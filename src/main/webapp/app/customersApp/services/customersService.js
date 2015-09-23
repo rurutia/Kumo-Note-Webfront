@@ -9,7 +9,7 @@ define(['app'], function (app) {
             factory = {};
 
         factory.getNotes = function() {
-            var resource = '/kumo-note/notes/load';
+            var resource = '/kumo-note-restapi/notes/load';
             return $http.get(resource).then(function (response) {
                 console.log("response......................");
                 console.log(response);

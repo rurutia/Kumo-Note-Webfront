@@ -17,7 +17,7 @@ require(
         'customersApp/services/dataService',
         'customersApp/services/modalService',
         'customersApp/services/httpInterceptors',
-        'customersApp/filters/nameCityStateFilter',
+        'customersApp/filters/noteFilter',
         'customersApp/filters/nameProductFilter',
         'customersApp/filters/textTruncationFilter',
         'customersApp/controllers/navbarController',

@@ -127,7 +127,7 @@ define(['app'], function (app) {
         }
 
         function filterRecords(filterText) {
-            vm.filteredRecords = $filter("nameCityStateFilter")(vm.records, filterText);
+            vm.filteredRecords = $filter("noteFilter")(vm.records, filterText);
             vm.filteredCount = vm.filteredRecords.length;
         }
 

@@ -65,7 +65,7 @@
                     <footer>
                         <div class="row">
                             <div class="col-md-12">
-                                Created by <a href="http://tc1027.metawerx.com.au/webpaint" target="_blank">Michael Yu</a>
+                                Created by <a href="http://tc1027.metawerx.com.au/webpaint" target="_blank">Michael Yu</a> 2015. All Rights Reserved
                             </div>
                         </div>
                     </footer>
