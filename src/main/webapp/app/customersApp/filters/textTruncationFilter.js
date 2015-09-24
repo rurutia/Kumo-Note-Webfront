@@ -6,6 +6,8 @@ define(['app'], function(app) {
 	
 	var filter = function() {
 		return function(text, length) {
+			if(!text) return text;
+			
 			if(!length || length <= DEFAULT_SUBSTITUTION + 1) length = DEFAULT_LENGTH;
 			
 			

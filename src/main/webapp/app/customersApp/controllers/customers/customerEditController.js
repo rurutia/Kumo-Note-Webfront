@@ -14,6 +14,7 @@ define(['app'], function (app) {
             onRouteChangeOff;
 
         vm.customer = {};
+        vm.note = {};
         vm.states = [];
         vm.title = (customerId > 0) ? 'Edit' : 'Add';
         vm.buttonText = (customerId > 0) ? 'Update' : 'Add';
@@ -24,10 +25,10 @@ define(['app'], function (app) {
             return customerStateId === stateId;
         };
 
-        vm.saveCustomer = function () {
+        vm.saveNote = function () {
             if ($scope.editForm.$valid) {
-                if (!vm.customer.id) {
-                    dataService.insertCustomer(vm.customer).then(processSuccess, processError);
+                if (!vm.note.id) {
+                    dataService.saveNote(vm.note).then(processSuccess, processError);
                 }
                 else {
                     dataService.updateCustomer(vm.customer).then(processSuccess, processError);

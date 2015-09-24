@@ -6,16 +6,29 @@ define(['app'], function (app) {
 
     var customersFactory = function ($http, $q) {
         var serviceBase = '/api/dataservice/',
+            serviceBaseUrl = '/kumo-note-restapi/',
             factory = {};
 
         factory.getNotes = function() {
-            var resource = '/kumo-note-restapi/notes/load';
+            var resource = serviceBaseUrl + 'notes/load';
             return $http.get(resource).then(function (response) {
                 console.log("response......................");
                 console.log(response);
                 return {
                 	results: response.data,
                 	totalRecords: response.data.length
+                };
+            });
+        };
+        
+        factory.saveNote = function(note) {
+            var resource = serviceBaseUrl + 'notes/save';
+            console.log(note);
+            return $http.post(resource, note).then(function (response) {
+                console.log("response......................");
+                console.log(response);
+                return {
+                	results: response.data
                 };
             });
         };

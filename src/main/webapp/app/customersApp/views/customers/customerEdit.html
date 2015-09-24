@@ -1,7 +1,7 @@
 ﻿<div class="view">
     <div class="container">
         <header>
-            <h3><span class="glyphicon glyphicon-edit"></span> {{vm.title}} Customer</h3>
+            <h3><span class="glyphicon glyphicon-edit"></span> {{vm.title}} Note</h3>
         </header>
         <form name="editForm" novalidate>
             <div class="customerEdit">
@@ -13,131 +13,52 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2">
-                        First Name:
+                        Subject:
                     </div>
                     <div class="col-md-10">
-                        <input type="text" name="firstName" class="form-control" data-ng-model="vm.customer.firstName" required />
-                        <span class="errorMessage" ng-show="editForm.firstName.$touched && editForm.firstName.$invalid">
-                            First name is required
+                        <input type="text" name="note" class="form-control" data-ng-model="vm.note.subject" required />
+                        <span class="errorMessage" ng-show="editForm.note.$touched && editForm.note.$invalid">
+                            Subject is required
                         </span>
                     </div>
                 </div>
                 <br />
                 <div class="row">
                     <div class="col-md-2">
-                        Last Name:
+                        Type:
                     </div>
                     <div class="col-md-10">
-                        <input type="text" name="lastName" class="form-control" data-ng-model="vm.customer.lastName" required />
-                        <span class="errorMessage" ng-show="editForm.lastName.$touched && editForm.lastName.$invalid">
-                            Last name is required
+                        <input type="text" name="type" class="form-control" data-ng-model="vm.note.type" required />
+                        <span class="errorMessage" ng-show="editForm.type.$touched && editForm.type.$invalid">
+                            Type is required
+                        </span>
+                    </div>
+                </div>                
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        Sector:
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" name="sector" class="form-control" data-ng-model="vm.note.mainType" required />
+                        <span class="errorMessage" ng-show="editForm.sector.$touched && editForm.sector.$invalid">
+                            Sector is required
                         </span>
                     </div>
                 </div>
                 <br />
                 <div class="row">
                     <div class="col-md-2">
-                        Gender:
+                        Content:
                     </div>
                     <div class="col-md-10">
-                        <div class="radio">
-                            <label class="radio">
-                                <input type="radio" name="gender" value="Male"
-                                       data-ng-checked="vm.customer.gender == 'Male'"
-                                       data-ng-model="vm.customer.gender" />
-                                Male
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label class="radio">
-                                <input type="radio" name="gender" value="Female"
-                                       data-ng-checked="vm.customer.gender == 'Female'"
-                                       data-ng-model="vm.customer.gender" />
-                                Female
-                                <br />
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-2">
-                        Email:
-                    </div>
-                    <div class="col-md-10">
-                        <!-- allowInvalid added below so that the model isn't wiped
-                        out (the default behavior) if email is determined to be invalid due to being a duplicate-->
-                        <input type="text" name="email"
-                               class="form-control"
-                               data-ng-model="vm.customer.email"
-                               data-ng-model-options="{ updateOn: 'blur', allowInvalid: true }"
-                               data-wc-unique
-                               data-wc-unique-key="{{vm.customer.id}}"
-                               data-wc-unique-property="email"
-                               data-ng-minlength="3"
-                               required />
-                        <!-- Show error if touched and unique is in error -->
-                        <span class="errorMessage" ng-show="editForm.email.$touched && editForm.email.$error.unique">
-                            Email already in use
-                        </span>
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-2">
-                        Address:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" name="address" class="form-control" data-ng-model="vm.customer.address" required />
-                        <span class="errorMessage" ng-show="editForm.address.$touched && editForm.address.$invalid">
-                            Address is required
-                        </span>
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-2">
-                        City:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" name="city" class="form-control" data-ng-model="vm.customer.city" required />
-                        <span class="errorMessage" ng-show="editForm.city.$touched && editForm.city.$invalid">
-                            City is required
-                        </span>
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-2">
-                        State:
-                    </div>
-                    <div class="col-md-10">
-                        <select name="state" required class="form-control"
-                                data-ng-model="vm.customer.stateId"
-                                data-ng-options="state.id as state.name for state in vm.states">
-                            <option value=""></option>
-                        </select>
-                        <span class="errorMessage" ng-show="editForm.state.$touched && editForm.state.$invalid">
-                            2 character state is required
-                        </span>
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-2">
-                        Zip:
-                    </div>
-                    <div class="col-md-10">
-                        <input type="number" name="zip" class="form-control" data-ng-model="vm.customer.zip" required />
-                        <span class="errorMessage" ng-show="editForm.zip.$touched && editForm.zip.$invalid">
-                            Zip is required
-                        </span>
+                        <textarea class="form-control" rows="3" name="content" data-ng-model="vm.note.content"></textarea>
                     </div>
                 </div>
                 <br />
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary" data-ng-click="vm.saveCustomer()"
+                        <button type="submit" class="btn btn-primary" data-ng-click="vm.saveNote()"
                                 ng-disabled="editForm.$invalid || !editForm.$dirty">
                             {{vm.buttonText}}
                         </button>
